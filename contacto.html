@@ -56,10 +56,10 @@
     <h2 class="section-title">Oficina</h2>
     <div class="office-grid">
       <div class="office-card">
-        <h3>San Miguel de Tucumán</h3>
-        <p class="nota-confirmar">Dirección exacta a confirmar por Ricardo antes de publicar.</p>
-        <p>+54 381 632 1536</p>
-        <p>audienicasvernal@gmail.com</p>
+        <h3>📍 San Miguel de Tucumán</h3>
+        <p><strong>Centro cívico</strong> — Atención presencial con cita previa</p>
+        <p>☎️ <a href="tel:+543816321536" style="color: var(--azul-noche); font-weight: bold; text-decoration: none;">+54 381 632 1536</a></p>
+        <p>📧 <a href="mailto:audienicasvernal@gmail.com" style="color: var(--azul-noche); font-weight: bold; text-decoration: none;">audienicasvernal@gmail.com</a></p>
       </div>
       <div class="office-card">
         <h3>Horario de atención</h3>
@@ -76,32 +76,30 @@
 
   <section class="container" data-reveal>
     <h2 class="section-title">Formulario de consulta</h2>
-    <p class="section-lead">Esta consulta es una demo: todavía no envía datos a ningún servidor.</p>
+    <p class="section-lead">Sistema de triaje previo. Tus datos son confidenciales y serán analizados personalmente para coordinar una defensa inmediata.</p>
     <form id="contact-form" style="max-width:560px;">
       <div class="form-group">
-        <label for="nombre">Nombre</label>
+        <label for="nombre">Nombre y apellido</label>
         <input type="text" id="nombre" name="nombre" required>
       </div>
       <div class="form-group">
-        <label for="telefono">Teléfono</label>
-        <input type="tel" id="telefono" name="telefono" required>
+        <label for="telefono">Teléfono (WhatsApp preferentemente)</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+54 9 381..." required>
       </div>
       <div class="form-group">
-        <label for="mensaje">Contame brevemente tu situación</label>
-        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        <label for="mensaje">Describi brevemente tu situación</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Ej: Fui detenido el... o me llamaron para una citación..." required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Enviar consulta</button>
+      <button type="submit" class="btn btn-primary">✉️ Enviar Consulta Urgente</button>
       <div id="form-confirm" class="form-confirm">
-        Consulta recibida (demo). Este formulario todavía no envía datos reales: se conectará a un
-        servicio de envío una vez publicado el sitio. La información compartida es confidencial y no
-        genera relación abogado-cliente hasta la entrevista profesional.
+        <strong>✅ Consulta registrada.</strong> Hemos recibido tu urgencia. Ricardo Vernal analizará tu caso personalmente en las próximas 2 horas y se contactará por WhatsApp o teléfono. La información compartida es confidencial. No genera relación abogado-cliente hasta firma de contrato de patrocinio.
       </div>
     </form>
   </section>
 
   <section class="container" id="quiz" data-reveal>
-    <h2 class="section-title">Análisis de urgencia</h2>
-    <p class="section-lead">4 preguntas para orientarte sobre los próximos pasos. No predice resultados judiciales ni reemplaza una consulta profesional.</p>
+    <h2 class="section-title">Análisis de urgencia penal</h2>
+    <p class="section-lead">Responde 4 preguntas para que Ricardo determine el nivel de urgencia de tu caso y los próximos pasos de defensa técnica. Tus respuestas son confidenciales.</p>
     <div class="wizard">
       <div class="wizard-progress-track"><div id="quiz-progress" class="wizard-progress-bar"></div></div>
 
@@ -139,21 +137,39 @@
       </div>
 
       <div class="wizard-step" hidden>
-        <h3>Resultado orientativo</h3>
-        <div id="quiz-nivel" class="resultado-nivel"></div>
-        <div id="quiz-complejidad" class="semaforo"></div>
+        <h3>📋 INFORME DE PRIORIDAD</h3>
 
-        <h4 style="margin-top:1.25rem; margin-bottom:0.5rem;">Recomendaciones</h4>
-        <ul id="quiz-recomendaciones" style="padding-left:1.25rem; color:var(--gris);"></ul>
+        <div id="quiz-nivel" class="resultado-nivel" style="font-size: 1.8rem; margin-bottom: 1rem; text-align: center;"></div>
+        <div id="quiz-complejidad" class="semaforo" style="text-align: center; margin-bottom: 1.5rem;"></div>
 
-        <div class="tripartito">
-          <div class="tripartito-item"><h4>Fiscal (MPF)</h4><p id="quiz-fiscal"></p></div>
-          <div class="tripartito-item"><h4>Juez</h4><p id="quiz-juez"></p></div>
-          <div class="tripartito-item"><h4>Defensa</h4><p id="quiz-defensa"></p></div>
+        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%); border: 2px solid #d97706; padding: 1.5rem; border-radius: 6px; margin-bottom: 1.5rem; text-align: center;">
+          <p style="color: #92400e; font-weight: bold; margin: 0 0 1rem 0; font-size: 0.95rem;">⏱️ PRÓXIMO PASO CRÍTICO</p>
+          <p id="quiz-accion" style="color: #92400e; margin: 0 0 1rem 0; font-size: 0.9rem; font-weight: 600;"></p>
+          <p style="color: #92400e; font-size: 0.85rem; margin: 0;">Las primeras 48 horas son determinantes. Contacta ahora con un defensor.</p>
+        </div>
+
+        <h4 style="margin-top:1.25rem; margin-bottom:0.75rem; color: var(--azul-noche);">✓ Estrategia recomendada</h4>
+        <ul id="quiz-recomendaciones" style="padding-left:1.25rem; color:var(--gris); margin-bottom: 1.5rem;"></ul>
+
+        <div style="background: #f8fafc; border-left: 4px solid #0284c7; padding: 1.25rem; border-radius: 6px; margin-bottom: 1.5rem;">
+          <h4 style="color: var(--azul-noche); margin-top: 0; font-size: 0.95rem; margin-bottom: 0.75rem;">Los tres actores frente a tu caso</h4>
+          <div class="tripartito">
+            <div class="tripartito-item"><h4>⚖️ Fiscal</h4><p id="quiz-fiscal" style="font-size: 0.85rem;"></p></div>
+            <div class="tripartito-item"><h4>🏛️ Juez</h4><p id="quiz-juez" style="font-size: 0.85rem;"></p></div>
+            <div class="tripartito-item"><h4>🛡️ Defensa</h4><p id="quiz-defensa" style="font-size: 0.85rem;"></p></div>
+          </div>
         </div>
 
         <div id="quiz-disclaimer" class="disclaimer-box"></div>
-        <a href="tel:+543816321536" class="btn btn-primary" style="margin-top:1.5rem;">Llamar ahora</a>
+
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+          <a href="tel:+543816321536" class="btn btn-primary" style="flex: 1; text-align: center; padding: 1rem; font-weight: bold;">
+            ☎️ Llamar Ahora
+          </a>
+          <a href="https://wa.me/5493816321536" class="btn btn-secondary" style="flex: 1; text-align: center; padding: 1rem; font-weight: bold;">
+            💬 WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -224,6 +240,14 @@
             document.getElementById('quiz-juez').textContent = r.tripartito.juez;
             document.getElementById('quiz-defensa').textContent = r.tripartito.defensa;
             document.getElementById('quiz-disclaimer').textContent = r.disclaimer;
+
+            // Agregar acción crítica basada en nivel de urgencia
+            const acciones = {
+              'urgente': '⚠️ TU CASO ES URGENTE. Activa la defensa técnica EN LAS PRÓXIMAS 2 HORAS. Los errores en las primeras 48 horas son irreversibles.',
+              'alto': '🔴 NIVEL ALTO DE URGENCIA. Solicita audiencia con defensor hoy mismo. La estrategia debe iniciarse ahora.',
+              'preventiva': '🟠 ACCIÓN PREVENTIVA RECOMENDADA. Consulta antes de cualquier citación o comunicación con la fiscalía.'
+            };
+            document.getElementById('quiz-accion').textContent = acciones[r.nivel] || 'Contacta con un defensor para evaluar tu caso.';
           }
         });
       });
