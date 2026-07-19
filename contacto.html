@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacto y Urgencias 24/7 — Ricardo Vernal</title>
+  <meta name="description" content="Atención de urgencias 24/7 ante detenciones y allanamientos. Análisis de urgencia orientativo y formulario de consulta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="nav-logo">Ricardo Vernal</a>
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="servicios.html" id="mega-menu-trigger">Servicios ▾</a>
+        <a href="faq.html">FAQ</a>
+        <div class="search-box">
+          <input id="search-input" type="search" placeholder="Buscar..." aria-label="Buscar en el sitio">
+          <div id="search-results" class="search-results"></div>
+        </div>
+        <a href="contacto.html#quiz" class="btn btn-primary">Consulta urgente</a>
+      </nav>
+      <button id="hamburger" class="hamburger" aria-label="Abrir menú">☰</button>
+    </div>
+    <div id="mega-menu" class="mega-menu">
+      <div class="container mega-menu-grid">
+        <a href="servicios.html#urgencias" class="mega-menu-item"><h4>Urgencias 24/7</h4><p>Detenciones y allanamientos en curso</p></a>
+        <a href="servicios.html#complejos" class="mega-menu-item"><h4>Delitos complejos</h4><p>Causas de alta complejidad probatoria</p></a>
+        <a href="servicios.html#querellas" class="mega-menu-item"><h4>Querellas</h4><p>Representación de la parte querellante</p></a>
+        <a href="servicios.html#preventivo" class="mega-menu-item"><h4>Asesoramiento preventivo</h4><p>Prevención de riesgo penal</p></a>
+        <a href="servicios.html#excarcelaciones" class="mega-menu-item"><h4>Excarcelaciones</h4><p>Pedidos de libertad</p></a>
+        <a href="servicios.html#recursos" class="mega-menu-item"><h4>Recursos y casación</h4><p>Apelación ante decisiones desfavorables</p></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero hero-chico">
+    <div class="container">
+      <h1>Contacto <span class="acento">y urgencias 24/7</span></h1>
+      <p>Ante una detención o un allanamiento en curso, comunicate de inmediato. Fuera de esos casos, coordinamos una consulta a la brevedad.</p>
+      <div class="hero-ctas">
+        <a href="tel:+543816321536" class="btn btn-primary">Llamar ahora</a>
+        <a href="https://wa.me/5493816321536" class="btn btn-secondary">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2 class="section-title">Oficina</h2>
+    <div class="office-grid">
+      <div class="office-card">
+        <h3>San Miguel de Tucumán</h3>
+        <p class="nota-confirmar">Dirección exacta a confirmar por Ricardo antes de publicar.</p>
+        <p>+54 381 632 1536</p>
+        <p>audienicasvernal@gmail.com</p>
+      </div>
+      <div class="office-card">
+        <h3>Horario de atención</h3>
+        <p>Lunes a viernes: 9 a 18 hs (consultas generales)</p>
+        <p>Urgencias (detenciones y allanamientos): 24/7</p>
+      </div>
+      <div class="office-card">
+        <h3>Alcance</h3>
+        <p>Tucumán y Norte Argentino (NOA)</p>
+        <p>Fuero penal ordinario y federal</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2 class="section-title">Formulario de consulta</h2>
+    <p class="section-lead">Esta consulta es una demo: todavía no envía datos a ningún servidor.</p>
+    <form id="contact-form" style="max-width:560px;">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" required>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Contame brevemente tu situación</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar consulta</button>
+      <div id="form-confirm" class="form-confirm">
+        Consulta recibida (demo). Este formulario todavía no envía datos reales: se conectará a un
+        servicio de envío una vez publicado el sitio. La información compartida es confidencial y no
+        genera relación abogado-cliente hasta la entrevista profesional.
+      </div>
+    </form>
+  </section>
+
+  <section class="container" id="quiz" data-reveal>
+    <h2 class="section-title">Análisis de urgencia</h2>
+    <p class="section-lead">4 preguntas para orientarte sobre los próximos pasos. No predice resultados judiciales ni reemplaza una consulta profesional.</p>
+    <div class="wizard">
+      <div class="wizard-progress-track"><div id="quiz-progress" class="wizard-progress-bar"></div></div>
+
+      <div class="wizard-step">
+        <h3>1. ¿Hay una detención en curso ahora mismo?</h3>
+        <div class="wizard-options">
+          <button data-question="detencionEnCurso" data-answer="true">Sí</button>
+          <button data-question="detencionEnCurso" data-answer="false">No</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>2. ¿Hubo un allanamiento con secuestro de bienes?</h3>
+        <div class="wizard-options">
+          <button data-question="allanamiento" data-answer="true">Sí</button>
+          <button data-question="allanamiento" data-answer="false">No</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>3. ¿Fuiste notificado de imputación formal o citación a audiencia?</h3>
+        <div class="wizard-options">
+          <button data-question="notificacionFormal" data-answer="true">Sí</button>
+          <button data-question="notificacionFormal" data-answer="false">No</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>4. Tipo de delito denunciado</h3>
+        <div class="wizard-options">
+          <button data-question="tipoDelito" data-answer="contravencional-menor">Contravencional / menor</button>
+          <button data-question="tipoDelito" data-answer="delito-comun">Delito común</button>
+          <button data-question="tipoDelito" data-answer="delito-complejo">Delito complejo</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>Resultado orientativo</h3>
+        <div id="quiz-nivel" class="resultado-nivel"></div>
+        <div id="quiz-complejidad" class="semaforo"></div>
+
+        <h4 style="margin-top:1.25rem; margin-bottom:0.5rem;">Recomendaciones</h4>
+        <ul id="quiz-recomendaciones" style="padding-left:1.25rem; color:var(--gris);"></ul>
+
+        <div class="tripartito">
+          <div class="tripartito-item"><h4>Fiscal (MPF)</h4><p id="quiz-fiscal"></p></div>
+          <div class="tripartito-item"><h4>Juez</h4><p id="quiz-juez"></p></div>
+          <div class="tripartito-item"><h4>Defensa</h4><p id="quiz-defensa"></p></div>
+        </div>
+
+        <div id="quiz-disclaimer" class="disclaimer-box"></div>
+        <a href="tel:+543816321536" class="btn btn-primary" style="margin-top:1.5rem;">Llamar ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Ricardo Vernal — Abogado penalista · San Miguel de Tucumán, Argentina</p>
+      <p>+54 381 632 1536 · audienicasvernal@gmail.com</p>
+      <p class="nota-confirmar">Este sitio no reemplaza asesoramiento legal profesional ni constituye publicidad de resultados.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.SITE_CONTENT = [
+      { titulo: 'Urgencias 24/7', texto: 'Atención inmediata ante detenciones y allanamientos', url: 'servicios.html#urgencias' },
+      { titulo: 'Delitos complejos', texto: 'Defensa técnica en causas de alta complejidad probatoria', url: 'servicios.html#complejos' },
+      { titulo: 'Querellas', texto: 'Representación de la parte querellante', url: 'servicios.html#querellas' },
+      { titulo: 'Asesoramiento preventivo', texto: 'Prevención de riesgo penal antes de que exista una causa', url: 'servicios.html#preventivo' },
+      { titulo: 'Excarcelaciones', texto: 'Pedidos de libertad y morigeración de la prisión preventiva', url: 'servicios.html#excarcelaciones' },
+      { titulo: 'Recursos y casación', texto: 'Apelación y casación ante decisiones desfavorables', url: 'servicios.html#recursos' },
+      { titulo: 'Derecho civil — teoría de la prueba', texto: 'Evaluación cualitativa de carga probatoria en procesos civiles', url: 'civil.html' },
+      { titulo: '¿Me pueden detener sin orden judicial?', texto: 'Casos de flagrancia y sus límites', url: 'faq.html#deteccion-sin-orden' },
+      { titulo: '¿Qué es la audiencia de control de detención?', texto: 'Qué pasa en las primeras 24-48 horas', url: 'faq.html#audiencia-control' },
+      { titulo: '¿Cómo pido la excarcelación?', texto: 'Requisitos y momento procesal oportuno', url: 'faq.html#excarcelacion' },
+      { titulo: '¿Tengo que declarar?', texto: 'El derecho a no autoincriminarse', url: 'faq.html#declarar' },
+      { titulo: '¿Qué hago si allanan mi domicilio?', texto: 'Pasos inmediatos y qué controlar del acta', url: 'faq.html#allanamiento' },
+      { titulo: '¿Cuánto dura un proceso penal?', texto: 'Plazos habituales según el fuero', url: 'faq.html#duracion' },
+    ];
+  </script>
+  <script src="main.js"></script>
+  <script src="quiz-urgencia.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      document.getElementById('form-confirm').classList.add('visible');
+    });
+
+    (function () {
+      const respuestas = {};
+      const quizSection = document.getElementById('quiz');
+      const pasos = quizSection.querySelectorAll('.wizard-step');
+      let actual = 0;
+
+      function mostrarPaso(i) {
+        pasos.forEach(function (p, idx) { p.hidden = idx !== i; });
+        document.getElementById('quiz-progress').style.width = ((i / (pasos.length - 1)) * 100) + '%';
+      }
+
+      quizSection.querySelectorAll('[data-answer]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const valor = btn.dataset.answer === 'true' ? true : btn.dataset.answer === 'false' ? false : btn.dataset.answer;
+          respuestas[btn.dataset.question] = valor;
+          if (actual < pasos.length - 1) {
+            actual++;
+            mostrarPaso(actual);
+          }
+          if (actual === pasos.length - 1) {
+            const r = window.classifyUrgency(respuestas);
+            document.getElementById('quiz-nivel').textContent = 'Nivel: ' + r.nivel.toUpperCase();
+            const semaforo = document.getElementById('quiz-complejidad');
+            semaforo.textContent = 'Complejidad procesal: ' + r.complejidad.toUpperCase();
+            semaforo.className = 'semaforo semaforo-' + r.complejidad;
+            const lista = document.getElementById('quiz-recomendaciones');
+            lista.innerHTML = r.recomendaciones.map(function (rec) { return '<li>' + rec + '</li>'; }).join('');
+            document.getElementById('quiz-fiscal').textContent = r.tripartito.fiscal;
+            document.getElementById('quiz-juez').textContent = r.tripartito.juez;
+            document.getElementById('quiz-defensa').textContent = r.tripartito.defensa;
+            document.getElementById('quiz-disclaimer').textContent = r.disclaimer;
+          }
+        });
+      });
+
+      mostrarPaso(0);
+    })();
+  </script>
+</body>
+</html>
