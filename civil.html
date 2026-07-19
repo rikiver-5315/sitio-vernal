@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Derecho Civil — Teoría de la Prueba | Ricardo Vernal</title>
+  <meta name="description" content="Evaluación cualitativa y orientativa de la carga de la prueba y la complejidad procesal en un proceso civil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="nav-logo">Ricardo Vernal</a>
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="servicios.html" id="mega-menu-trigger">Servicios ▾</a>
+        <a href="faq.html">FAQ</a>
+        <div class="search-box">
+          <input id="search-input" type="search" placeholder="Buscar..." aria-label="Buscar en el sitio">
+          <div id="search-results" class="search-results"></div>
+        </div>
+        <a href="contacto.html#quiz" class="btn btn-primary">Consulta urgente</a>
+      </nav>
+      <button id="hamburger" class="hamburger" aria-label="Abrir menú">☰</button>
+    </div>
+    <div id="mega-menu" class="mega-menu">
+      <div class="container mega-menu-grid">
+        <a href="servicios.html#urgencias" class="mega-menu-item"><h4>Urgencias 24/7</h4><p>Detenciones y allanamientos en curso</p></a>
+        <a href="servicios.html#complejos" class="mega-menu-item"><h4>Delitos complejos</h4><p>Causas de alta complejidad probatoria</p></a>
+        <a href="servicios.html#querellas" class="mega-menu-item"><h4>Querellas</h4><p>Representación de la parte querellante</p></a>
+        <a href="servicios.html#preventivo" class="mega-menu-item"><h4>Asesoramiento preventivo</h4><p>Prevención de riesgo penal</p></a>
+        <a href="servicios.html#excarcelaciones" class="mega-menu-item"><h4>Excarcelaciones</h4><p>Pedidos de libertad</p></a>
+        <a href="servicios.html#recursos" class="mega-menu-item"><h4>Recursos y casación</h4><p>Apelación ante decisiones desfavorables</p></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero hero-chico">
+    <div class="container">
+      <h1>Derecho Civil <span class="acento">— Teoría de la prueba</span></h1>
+      <p>Un módulo orientativo de 3 preguntas para evaluar, en términos cualitativos, la carga probatoria y la complejidad procesal de tu situación.</p>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <div class="wizard">
+      <div class="wizard-progress-track"><div id="wizard-progress" class="wizard-progress-bar"></div></div>
+
+      <div class="wizard-step">
+        <h3>1. ¿Qué tipo de proceso es?</h3>
+        <div class="wizard-options">
+          <button data-question="tipoProceso" data-answer="ejecutivo">Ejecutivo</button>
+          <button data-question="tipoProceso" data-answer="sumario">Sumario</button>
+          <button data-question="tipoProceso" data-answer="ordinario">Ordinario</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>2. ¿Con qué prueba contás?</h3>
+        <div class="wizard-options">
+          <button data-question="pruebaDisponible" data-answer="completa">Prueba completa</button>
+          <button data-question="pruebaDisponible" data-answer="parcial">Prueba parcial</button>
+          <button data-question="pruebaDisponible" data-answer="escasa">Prueba escasa</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>3. ¿Cuánto falta para la audiencia o el vencimiento del plazo?</h3>
+        <div class="wizard-options">
+          <button data-question="plazoAudiencia" data-answer="mas-30-dias">Más de 30 días</button>
+          <button data-question="plazoAudiencia" data-answer="menos-30-dias">Menos de 30 días</button>
+          <button data-question="plazoAudiencia" data-answer="sin-fecha">Sin fecha definida</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" hidden>
+        <h3>Resultado orientativo</h3>
+        <div id="resultado-complejidad" class="semaforo"></div>
+        <p id="resultado-carga"></p>
+        <p id="resultado-mensaje" style="margin-top:0.75rem;"></p>
+        <div class="disclaimer-box">
+          Este resultado es orientativo, no constituye asesoramiento legal vinculante ni reemplaza una
+          consulta profesional. No genera relación abogado-cliente.
+        </div>
+        <a href="contacto.html" class="btn btn-primary" style="margin-top:1.5rem;">Consultar con Ricardo Vernal</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Ricardo Vernal — Abogado penalista · San Miguel de Tucumán, Argentina</p>
+      <p>+54 381 632 1536 · audienicasvernal@gmail.com</p>
+      <p class="nota-confirmar">Este sitio no reemplaza asesoramiento legal profesional ni constituye publicidad de resultados.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.SITE_CONTENT = [
+      { titulo: 'Urgencias 24/7', texto: 'Atención inmediata ante detenciones y allanamientos', url: 'servicios.html#urgencias' },
+      { titulo: 'Delitos complejos', texto: 'Defensa técnica en causas de alta complejidad probatoria', url: 'servicios.html#complejos' },
+      { titulo: 'Querellas', texto: 'Representación de la parte querellante', url: 'servicios.html#querellas' },
+      { titulo: 'Asesoramiento preventivo', texto: 'Prevención de riesgo penal antes de que exista una causa', url: 'servicios.html#preventivo' },
+      { titulo: 'Excarcelaciones', texto: 'Pedidos de libertad y morigeración de la prisión preventiva', url: 'servicios.html#excarcelaciones' },
+      { titulo: 'Recursos y casación', texto: 'Apelación y casación ante decisiones desfavorables', url: 'servicios.html#recursos' },
+      { titulo: 'Derecho civil — teoría de la prueba', texto: 'Evaluación cualitativa de carga probatoria en procesos civiles', url: 'civil.html' },
+      { titulo: '¿Me pueden detener sin orden judicial?', texto: 'Casos de flagrancia y sus límites', url: 'faq.html#deteccion-sin-orden' },
+      { titulo: '¿Qué es la audiencia de control de detención?', texto: 'Qué pasa en las primeras 24-48 horas', url: 'faq.html#audiencia-control' },
+      { titulo: '¿Cómo pido la excarcelación?', texto: 'Requisitos y momento procesal oportuno', url: 'faq.html#excarcelacion' },
+      { titulo: '¿Tengo que declarar?', texto: 'El derecho a no autoincriminarse', url: 'faq.html#declarar' },
+      { titulo: '¿Qué hago si allanan mi domicilio?', texto: 'Pasos inmediatos y qué controlar del acta', url: 'faq.html#allanamiento' },
+      { titulo: '¿Cuánto dura un proceso penal?', texto: 'Plazos habituales según el fuero', url: 'faq.html#duracion' },
+    ];
+  </script>
+  <script src="main.js"></script>
+  <script src="wizard-civil.js"></script>
+  <script>
+    (function () {
+      const respuestas = {};
+      const pasos = document.querySelectorAll('.wizard-step');
+      let actual = 0;
+
+      function mostrarPaso(i) {
+        pasos.forEach(function (p, idx) { p.hidden = idx !== i; });
+        document.getElementById('wizard-progress').style.width = ((i / (pasos.length - 1)) * 100) + '%';
+      }
+
+      document.querySelectorAll('[data-answer]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          respuestas[btn.dataset.question] = btn.dataset.answer;
+          if (actual < pasos.length - 1) {
+            actual++;
+            mostrarPaso(actual);
+          }
+          if (actual === pasos.length - 1) {
+            const resultado = window.classifyCivilCase(respuestas);
+            const semaforo = document.getElementById('resultado-complejidad');
+            semaforo.textContent = 'Complejidad procesal: ' + resultado.complejidad.toUpperCase();
+            semaforo.className = 'semaforo semaforo-' + resultado.complejidad;
+            document.getElementById('resultado-carga').textContent = resultado.cargaProueba;
+            document.getElementById('resultado-mensaje').textContent = resultado.mensaje;
+          }
+        });
+      });
+
+      mostrarPaso(0);
+    })();
+  </script>
+</body>
+</html>
