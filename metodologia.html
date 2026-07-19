@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Derecho Civil — Teoría de la Prueba | Ricardo Vernal</title>
-  <meta name="description" content="Evaluación cualitativa y orientativa de la carga de la prueba y la complejidad procesal en un proceso civil.">
+  <title>Cómo se piensa una defensa — Ejemplo ilustrativo | Ricardo Vernal</title>
+  <meta name="description" content="Un ejemplo hipotético, sin datos reales, de cómo se analiza una causa penal desde los tres roles procesales: fiscalía, juez y defensa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
@@ -19,7 +19,6 @@
         <a href="perfil.html">Perfil</a>
         <a href="servicios.html" id="mega-menu-trigger">Servicios ▾</a>
         <a href="faq.html">FAQ</a>
-        <a href="metodologia.html">Método</a>
         <div class="search-box">
           <input id="search-input" type="search" placeholder="Buscar..." aria-label="Buscar en el sitio">
           <div id="search-results" class="search-results"></div>
@@ -42,54 +41,88 @@
 
   <section class="hero hero-chico">
     <div class="container">
-      <h1>Derecho Civil <span class="acento">— Teoría de la prueba</span></h1>
-      <p>Un módulo orientativo de 3 preguntas para evaluar, en términos cualitativos, la carga probatoria y la complejidad procesal de tu situación.</p>
+      <h1>Cómo se piensa <span class="acento">una defensa</span></h1>
+      <p>Un ejemplo hipotético para mostrar el método de trabajo: cómo se analiza una causa desde los tres roles del proceso penal.</p>
     </div>
   </section>
 
   <section class="container" data-reveal>
-    <div class="wizard">
-      <div class="wizard-progress-track"><div id="wizard-progress" class="wizard-progress-bar"></div></div>
+    <div class="disclaimer-box" style="margin-top:0; font-size:0.95rem;">
+      <strong>Este caso es ficticio.</strong> No corresponde a ninguna persona, expediente ni hecho real.
+      Se usa únicamente para ilustrar la metodología de análisis. No constituye asesoramiento legal,
+      no predice resultados judiciales y no reemplaza una consulta profesional sobre un caso concreto.
+    </div>
+  </section>
 
-      <div class="wizard-step">
-        <h3>1. ¿Qué tipo de proceso es?</h3>
-        <div class="wizard-options">
-          <button data-question="tipoProceso" data-answer="ejecutivo">Ejecutivo</button>
-          <button data-question="tipoProceso" data-answer="sumario">Sumario</button>
-          <button data-question="tipoProceso" data-answer="ordinario">Ordinario</button>
-        </div>
+  <section class="container" data-reveal>
+    <h2 class="section-title">Relato de los hechos (ejemplo)</h2>
+    <p class="section-lead" style="max-width:720px;">
+      Personal policial es alertado por una alarma en un comercio cerrado. Al llegar, encuentra una
+      ventana trasera forzada y a una persona dentro del local, con mercadería en una mochila, que es
+      detenida en el lugar. No hay testigos del momento exacto del ingreso ni registro de cámaras de
+      seguridad (no funcionaban esa noche). Se secuestra la mercadería y una herramienta. Ante la
+      policía, y sin abogado presente, la persona detenida dice espontáneamente que "la puerta ya
+      estaba abierta".
+    </p>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2 class="section-title">Los tres roles frente al mismo caso</h2>
+    <div class="tripartito" style="margin-block:0;">
+      <div class="tripartito-item">
+        <h4>Fiscalía</h4>
+        <p>Se apoya en la flagrancia — la persona fue hallada en el lugar con la mercadería — como
+        prueba directa de autoría. Debe definir la calificación legal (¿hurto agravado o robo?) según
+        cómo se interprete la forma en que se venció la ventana, y busca sostener la calificación más
+        gravosa que la prueba permita.</p>
       </div>
-
-      <div class="wizard-step" hidden>
-        <h3>2. ¿Con qué prueba contás?</h3>
-        <div class="wizard-options">
-          <button data-question="pruebaDisponible" data-answer="completa">Prueba completa</button>
-          <button data-question="pruebaDisponible" data-answer="parcial">Prueba parcial</button>
-          <button data-question="pruebaDisponible" data-answer="escasa">Prueba escasa</button>
-        </div>
+      <div class="tripartito-item">
+        <h4>Juez</h4>
+        <p>Antes de mirar el fondo, debe resolver una cuestión previa: si la manifestación hecha sin
+        abogado presente puede usarse como prueba. Después, define entre las dos calificaciones legales
+        posibles, porque de eso depende la escala penal aplicable y qué alternativas (como la probation)
+        podrían evaluarse más adelante.</p>
       </div>
-
-      <div class="wizard-step" hidden>
-        <h3>3. ¿Cuánto falta para la audiencia o el vencimiento del plazo?</h3>
-        <div class="wizard-options">
-          <button data-question="plazoAudiencia" data-answer="mas-30-dias">Más de 30 días</button>
-          <button data-question="plazoAudiencia" data-answer="menos-30-dias">Menos de 30 días</button>
-          <button data-question="plazoAudiencia" data-answer="sin-fecha">Sin fecha definida</button>
-        </div>
-      </div>
-
-      <div class="wizard-step" hidden>
-        <h3>Resultado orientativo</h3>
-        <div id="resultado-complejidad" class="semaforo"></div>
-        <p id="resultado-carga"></p>
-        <p id="resultado-mensaje" style="margin-top:0.75rem;"></p>
-        <div class="disclaimer-box">
-          Este resultado es orientativo, no constituye asesoramiento legal vinculante ni reemplaza una
-          consulta profesional. No genera relación abogado-cliente.
-        </div>
-        <a href="contacto.html" class="btn btn-primary" style="margin-top:1.5rem;">Consultar con Ricardo Vernal</a>
+      <div class="tripartito-item">
+        <h4>Defensa</h4>
+        <p>Plantea la exclusión de la manifestación espontánea por falta de asistencia letrada (art. 18
+        CN). Sostiene la calificación más benigna disponible, señala que no hubo violencia sobre
+        personas, y marca los vacíos probatorios: sin cámaras, sin testigos del ingreso.</p>
       </div>
     </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2 class="section-title">Puntos que definen la estrategia</h2>
+    <div class="card-grid">
+      <div class="service-card">
+        <h3>🔴 La manifestación sin abogado</h3>
+        <p>Es el punto más sensible del caso: si se plantea con éxito su exclusión, cambia lo que la
+        acusación puede probar directamente.</p>
+      </div>
+      <div class="service-card">
+        <h3>🟠 Hurto agravado o robo</h3>
+        <p>La calificación legal no es automática: depende de cómo se interprete el modo en que se
+        venció la ventana, y de eso depende la escala penal aplicable.</p>
+      </div>
+      <div class="service-card">
+        <h3>🟡 Vacíos probatorios</h3>
+        <p>Sin cámaras funcionando ni testigos del ingreso, hay aspectos del hecho que no quedan
+        acreditados de forma directa.</p>
+      </div>
+    </div>
+    <div id="ejemplo-complejidad" class="semaforo semaforo-media" style="margin-top:2rem;">
+      Complejidad procesal del ejemplo: MEDIA
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <div class="disclaimer-box">
+      Este análisis muestra <strong>cómo se piensa</strong> un caso, no cómo termina. Cada causa real
+      tiene hechos, prueba y circunstancias propias que solo pueden evaluarse en una consulta
+      profesional — nunca a partir de un ejemplo general como este.
+    </div>
+    <a href="contacto.html" class="btn btn-primary" style="margin-top:1.5rem;">Consultar sobre mi situación</a>
   </section>
 
   <footer class="site-footer">
@@ -119,38 +152,5 @@
     ];
   </script>
   <script src="main.js"></script>
-  <script src="wizard-civil.js"></script>
-  <script>
-    (function () {
-      const respuestas = {};
-      const pasos = document.querySelectorAll('.wizard-step');
-      let actual = 0;
-
-      function mostrarPaso(i) {
-        pasos.forEach(function (p, idx) { p.hidden = idx !== i; });
-        document.getElementById('wizard-progress').style.width = ((i / (pasos.length - 1)) * 100) + '%';
-      }
-
-      document.querySelectorAll('[data-answer]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          respuestas[btn.dataset.question] = btn.dataset.answer;
-          if (actual < pasos.length - 1) {
-            actual++;
-            mostrarPaso(actual);
-          }
-          if (actual === pasos.length - 1) {
-            const resultado = window.classifyCivilCase(respuestas);
-            const semaforo = document.getElementById('resultado-complejidad');
-            semaforo.textContent = 'Complejidad procesal: ' + resultado.complejidad.toUpperCase();
-            semaforo.className = 'semaforo semaforo-' + resultado.complejidad;
-            document.getElementById('resultado-carga').textContent = resultado.cargaProueba;
-            document.getElementById('resultado-mensaje').textContent = resultado.mensaje;
-          }
-        });
-      });
-
-      mostrarPaso(0);
-    })();
-  </script>
 </body>
 </html>
