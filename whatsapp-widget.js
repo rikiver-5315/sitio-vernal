@@ -41,10 +41,10 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
-      border: none;
+      background: linear-gradient(135deg, #003366 0%, #001a4d 100%);
+      border: 2px solid #0052a3;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 4px 16px rgba(0, 51, 102, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -55,7 +55,8 @@
 
     .wa-widget-button:hover {
       transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.6);
+      box-shadow: 0 6px 20px rgba(0, 51, 102, 0.5);
+      background: linear-gradient(135deg, #0052a3 0%, #003366 100%);
     }
 
     .wa-widget-button:active {
@@ -91,7 +92,7 @@
       right: 0;
       background: white;
       border-radius: 12px;
-      box-shadow: 0 5px 40px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 8px 32px rgba(0, 51, 102, 0.15);
       min-width: 280px;
       max-width: 320px;
       opacity: 0;
@@ -99,6 +100,7 @@
       transform: translateY(10px) scale(0.95);
       transition: all 0.3s ease;
       overflow: hidden;
+      border: 1px solid #e5e7eb;
     }
 
     .wa-widget-menu.open {
@@ -108,8 +110,8 @@
     }
 
     .wa-widget-header {
-      background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
-      padding: 1rem;
+      background: linear-gradient(135deg, #003366 0%, #001a4d 100%);
+      padding: 1.25rem;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -150,33 +152,34 @@
 
     .wa-widget-divider {
       height: 1px;
-      background: #f3f4f6;
+      background: #e5e7eb;
     }
 
     .wa-widget-shortcuts {
-      padding: 12px;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
     .wa-shortcut {
-      padding: 10px 12px;
-      background: #f3f4f6;
-      border: none;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
       cursor: pointer;
       font-size: 13px;
       font-weight: 500;
-      color: #1f2937;
+      color: #003366;
       text-align: left;
       transition: all 0.2s ease;
-      border: 1px solid transparent;
     }
 
     .wa-shortcut:hover {
-      background: #e5e7eb;
-      border-color: #25d366;
+      background: #e0f2fe;
+      border-color: #0284c7;
+      color: #003366;
+      transform: translateX(2px);
     }
 
     .wa-shortcut:active {
@@ -185,19 +188,20 @@
 
     .wa-shortcut-icon {
       margin-right: 8px;
+      font-size: 14px;
     }
 
     .wa-widget-footer {
       padding: 12px;
       text-align: center;
       background: #f9fafb;
-      border-top: 1px solid #f3f4f6;
+      border-top: 1px solid #e5e7eb;
       font-size: 12px;
       color: #6b7280;
     }
 
     .wa-widget-footer a {
-      color: #25d366;
+      color: #003366;
       text-decoration: none;
       font-weight: 600;
     }
@@ -264,7 +268,9 @@
       </div>
     </div>
     <button class="wa-widget-button" id="waButton" title="Enviar mensaje por WhatsApp">
-      <span>💬</span>
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.159-.173.193-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.082.354-2.915.992l-.104.066-4.332-.641L3.71 5.429l.067-.108A4.692 4.692 0 018.051 3.5h.005c2.577 0 4.957 1.067 6.659 2.766 1.702 1.699 2.768 4.076 2.768 6.653 0 5.159-4.213 9.372-9.372 9.372h-.005a9.36 9.36 0 01-4.455-1.107l-.107-.057-4.332.641.641-4.332-.058-.107A9.358 9.358 0 013.5 12.051c0-5.159 4.213-9.372 9.372-9.372m7.926 13.129A11.852 11.852 0 0112.051 22c-3.282 0-6.362-1.363-8.514-3.553A11.856 11.856 0 011 12.051c0-3.282 1.363-6.362 3.553-8.514A11.852 11.852 0 0112.051 1c3.282 0 6.362 1.363 8.514 3.553A11.856 11.856 0 0123 12.051c0 3.282-1.363 6.362-3.553 8.514" style="fill:white;"/>
+      </svg>
       <span class="wa-notification-badge">1</span>
     </button>
   `;
