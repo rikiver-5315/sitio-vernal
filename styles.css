@@ -106,6 +106,10 @@ section { padding-block: 3.5rem; }
   padding: 4rem 0 6rem;
   clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
 }
+.hero-content { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
+.hero-text { max-width: 640px; }
+.hero-image { display: none; text-align: center; }
+.hero-image img { max-width: 100%; height: auto; border-radius: 8px; }
 .hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); color: var(--blanco); margin-bottom: 1rem; }
 .hero .acento { color: var(--pizarra); }
 .hero p { max-width: 640px; color: rgba(255,255,255,0.85); font-size: 1.1rem; margin-bottom: 2rem; }
@@ -214,7 +218,8 @@ footer.site-footer .nota-confirmar { color: rgba(255,255,255,0.6); border-left-c
 /* Desktop */
 @media (min-width: 960px) {
   .hamburger { display: none; }
-  .visual-gallery { grid-template-columns: repeat(3, 1fr); }
+  .hero-content { grid-template-columns: 1fr 400px; }
+  .hero-image { display: block; }
   .nav-links {
     display: flex; position: static; background: none; padding: 0; border: none;
     flex-direction: row; align-items: center; width: auto;
