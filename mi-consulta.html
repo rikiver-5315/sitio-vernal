@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enviar Mi Consulta — Ricardo Vernal</title>
+  <meta name="description" content="Cuéntanos tu caso con foto, documento, texto o nota de voz. Respuesta en las próximas 2 horas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .big-button {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: 2px solid var(--azul-noche);
+      background: white;
+      color: var(--azul-noche);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      text-align: center;
+    }
+
+    .big-button:hover {
+      background: var(--azul-noche);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+    }
+
+    .big-button-icon {
+      font-size: 2rem;
+    }
+
+    .file-list {
+      background: var(--gris-claro);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem;
+      background: white;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      border-left: 4px solid var(--azul-noche);
+    }
+
+    .file-item-info {
+      flex: 1;
+    }
+
+    .file-item-name {
+      font-weight: 600;
+      color: var(--azul-noche);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .file-item-size {
+      font-size: 0.8rem;
+      color: var(--gris);
+      margin: 0.25rem 0 0 0;
+    }
+
+    .btn-remove {
+      background: #fee2e2;
+      color: #dc2626;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .btn-remove:hover {
+      background: #fecaca;
+    }
+
+    .textarea-wrapper {
+      position: relative;
+      margin: 1.5rem 0;
+    }
+
+    .textarea-wrapper textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 1rem;
+      border: 1px solid var(--pizarra);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    .textarea-wrapper textarea:focus {
+      outline: none;
+      border-color: var(--azul-noche);
+      box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+    }
+
+    .char-counter {
+      font-size: 0.85rem;
+      color: var(--gris);
+      margin-top: 0.5rem;
+      text-align: right;
+    }
+
+    .char-counter.warning {
+      color: #d97706;
+    }
+
+    .char-counter.error {
+      color: #dc2626;
+    }
+
+    .recorder-box {
+      background: #fef3c7;
+      border: 2px solid #d97706;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      margin: 1.5rem 0;
+    }
+
+    .recorder-status {
+      font-size: 0.9rem;
+      color: #92400e;
+      margin-top: 0.5rem;
+    }
+
+    .recorder-timer {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d97706;
+      margin: 1rem 0;
+    }
+
+    .recorder-playback {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .recorder-playback audio {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-recorder {
+      background: #d97706;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem;
+    }
+
+    .btn-recorder:hover {
+      background: #b45309;
+    }
+
+    .btn-recorder.recording {
+      background: #dc2626;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border: 2px solid #10b981;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem 0;
+      display: none;
+    }
+
+    .success-box.visible {
+      display: block;
+    }
+
+    .success-box h2 {
+      color: #047857;
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    .success-box p {
+      color: #059669;
+      margin: 0 0 1.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .success-steps {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .success-step {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      color: var(--azul-noche);
+      font-weight: 600;
+      border-left: 4px solid #10b981;
+    }
+
+    .faq-section {
+      margin-top: 3rem;
+    }
+
+    .faq-item {
+      background: var(--gris-claro);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      border: 1px solid var(--pizarra);
+      border-radius: 8px;
+      font-weight: 600;
+      color: var(--azul-noche);
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: var(--gris-claro);
+    }
+
+    .faq-toggle {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-toggle.open {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer.open {
+      max-height: 500px;
+    }
+
+    .faq-answer-content {
+      padding: 1.25rem;
+      color: var(--gris);
+      line-height: 1.6;
+    }
+
+    @media (min-width: 600px) {
+      .big-button {
+        padding: 1.5rem;
+      }
+
+      .success-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="nav-logo">Ricardo Vernal</a>
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="servicios.html" id="mega-menu-trigger">Servicios ▾</a>
+        <a href="faq.html">FAQ</a>
+        <a href="metodologia.html">Método</a>
+        <a href="analizar-mi-caso.html">Analizar Mi Caso</a>
+        <div class="search-box">
+          <input id="search-input" type="search" placeholder="Buscar..." aria-label="Buscar en el sitio">
+          <div id="search-results" class="search-results"></div>
+        </div>
+        <a href="contacto.html#quiz" class="btn btn-primary">Consulta urgente</a>
+      </nav>
+      <button id="hamburger" class="hamburger" aria-label="Abrir menú">☰</button>
+    </div>
+    <div id="mega-menu" class="mega-menu">
+      <div class="container mega-menu-grid">
+        <a href="servicios.html#urgencias" class="mega-menu-item"><h4>Urgencias 24/7</h4><p>Detenciones y allanamientos en curso</p></a>
+        <a href="servicios.html#complejos" class="mega-menu-item"><h4>Delitos complejos</h4><p>Causas de alta complejidad probatoria</p></a>
+        <a href="servicios.html#querellas" class="mega-menu-item"><h4>Querellas</h4><p>Representación de la parte querellante</p></a>
+        <a href="servicios.html#preventivo" class="mega-menu-item"><h4>Asesoramiento preventivo</h4><p>Prevención de riesgo penal</p></a>
+        <a href="servicios.html#excarcelaciones" class="mega-menu-item"><h4>Excarcelaciones</h4><p>Pedidos de libertad</p></a>
+        <a href="servicios.html#recursos" class="mega-menu-item"><h4>Recursos y casación</h4><p>Apelación ante decisiones desfavorables</p></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero hero-chico">
+    <div class="container">
+      <h1>Envía tu <span class="acento">consulta completa</span></h1>
+      <p>Foto, documento, tu relato o nota de voz. Todo en un mismo lugar. Nos pondremos en contacto en las próximas 2 horas.</p>
+    </div>
+  </section>
+
+  <section class="container" data-reveal style="margin-top: 2rem;">
+    <form id="consulta-form">
+      <!-- SECCIÓN 1: CAPTURAR FOTO -->
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-bottom: 1rem;">1. Capturar evidencia</h2>
+        <button type="button" id="btn-camera" class="big-button">
+          <span class="big-button-icon">📷</span>
+          <span>Sacar foto con el celular</span>
+        </button>
+        <button type="button" id="btn-upload-image" class="big-button">
+          <span class="big-button-icon">🖼️</span>
+          <span>Subir imagen desde galería</span>
+        </button>
+        <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;">
+        <input type="file" id="image-input" accept="image/*" style="display: none;">
+      </div>
+
+      <!-- SECCIÓN 2: ADJUNTAR DOCUMENTO -->
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-bottom: 1rem;">2. Adjuntar documentación</h2>
+        <button type="button" id="btn-pdf" class="big-button">
+          <span class="big-button-icon">📄</span>
+          <span>Adjuntar PDF / Documento</span>
+        </button>
+        <input type="file" id="pdf-input" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+      </div>
+
+      <!-- ARCHIVOS SUBIDOS -->
+      <div id="files-container"></div>
+
+      <!-- SECCIÓN 3: CONTAR LO QUE PASÓ -->
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-bottom: 1rem;">3. Relatá qué sucedió</h2>
+        <p style="font-size: 0.9rem; color: var(--gris); margin-bottom: 1rem;">Cuéntanos brevemente: qué pasó, cuándo, dónde y qué solución buscás.</p>
+        <div class="textarea-wrapper">
+          <textarea id="mensaje" name="mensaje" placeholder="Ejemplo: Me detuvieron el 15 de marzo en... Necesito saber si puedo... etc."></textarea>
+          <div class="char-counter" id="char-counter">0 / 500 caracteres</div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 4: NOTA DE VOZ -->
+      <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-bottom: 1rem;">4. Nota de voz (opcional)</h2>
+        <p style="font-size: 0.9rem; color: var(--gris); margin-bottom: 1rem;">Preferís hablar en lugar de escribir? Graba una nota de voz.</p>
+
+        <div class="recorder-box">
+          <div id="recorder-status" style="display: none;">
+            <div class="recorder-status">Grabando...</div>
+            <div class="recorder-timer" id="recorder-timer">0:00</div>
+            <button type="button" id="btn-stop-record" class="btn-recorder" style="background: #dc2626;">⏹️ Detener grabación</button>
+          </div>
+
+          <div id="recorder-idle">
+            <p style="margin: 0 0 1rem 0; color: #92400e;">Toca el botón y habla naturalmente. Máximo 2 minutos.</p>
+            <button type="button" id="btn-record" class="btn-recorder">🎤 Iniciar grabación</button>
+            <div id="recorder-warning" style="color: #dc2626; font-size: 0.85rem; margin-top: 0.5rem; display: none;">
+              ⚠️ Tu navegador no soporta grabación de audio
+            </div>
+          </div>
+
+          <div id="recorder-playback" style="display: none;">
+            <p style="color: #92400e; font-weight: bold; margin: 0 0 1rem 0;">✅ Audio grabado</p>
+            <audio id="audio-playback" controls style="width: 100%; margin-bottom: 1rem;"></audio>
+            <button type="button" id="btn-re-record" class="btn-recorder" style="background: #ea580c;">🔄 Grabar de nuevo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATOS DE CONTACTO -->
+      <div style="margin-bottom: 2rem; background: var(--gris-claro); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--azul-noche);">
+        <h3 style="color: var(--azul-noche); margin-top: 0;">Tu información de contacto</h3>
+
+        <div class="form-group">
+          <label for="nombre">Nombre y apellido</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono (WhatsApp preferentemente)</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+54 9 381..." required>
+        </div>
+      </div>
+
+      <!-- ENVIAR -->
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1.1rem; font-weight: bold; margin-bottom: 2rem;">
+        ✉️ ENVIAR MI CONSULTA
+      </button>
+    </form>
+
+    <!-- CONFIRMACIÓN -->
+    <div id="success-box" class="success-box">
+      <h2>✅ ¡Consulta recibida con éxito!</h2>
+      <p>Gracias por tu confianza. Nos pondremos en contacto en las próximas 2 horas.</p>
+      <div class="success-steps">
+        <div class="success-step">📋 Revisaremos tu caso completo</div>
+        <div class="success-step">☎️ Te llamaremos o escribiremos por WhatsApp</div>
+        <div class="success-step">⚖️ Iniciará la defensa técnica inmediata</div>
+      </div>
+      <a href="index.html" class="btn btn-secondary" style="margin-top: 1.5rem; display: inline-block;">← Volver a inicio</a>
+    </div>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" data-faq="confidencial">
+          <span>🔒 ¿Mis datos son confidenciales?</span>
+          <span class="faq-toggle">▼</span>
+        </button>
+        <div class="faq-answer" id="faq-confidencial">
+          <div class="faq-answer-content">
+            Sí. Todo lo que compartas está protegido por secreto profesional abogado-cliente. Tus datos NO se comparten, NO se venden, y NO se usan con otros fines. Una vez que envíes tu consulta, solo Ricardo Vernal y su equipo pueden acceder.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" data-faq="despues">
+          <span>📋 ¿Qué pasa después de enviar mis documentos?</span>
+          <span class="faq-toggle">▼</span>
+        </button>
+        <div class="faq-answer" id="faq-despues">
+          <div class="faq-answer-content">
+            <strong>Máximo 2 horas:</strong><br>
+            1. Ricardo analiza tu caso (foto, documento, relato, audio)<br>
+            2. Te contacta por WhatsApp o teléfono<br>
+            3. Si es urgencia (detención/allanamiento en curso), actúa inmediatamente<br>
+            4. Si es consulta preventiva, coordina una sesión profesional
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" data-faq="costo">
+          <span>💰 ¿Cuál es el costo?</span>
+          <span class="faq-toggle">▼</span>
+        </button>
+        <div class="faq-answer" id="faq-costo">
+          <div class="faq-answer-content">
+            <strong>Consulta inicial:</strong> Sin costo. Es una evaluación de urgencia y una charla profesional.<br><br>
+            <strong>Si contratas defensa:</strong> Se firma un contrato de patrocinio con honorarios acordados según la complejidad del caso y los servicios requeridos.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" data-faq="urgencia">
+          <span>🚨 ¿Qué hago si es una urgencia en este momento?</span>
+          <span class="faq-toggle">▼</span>
+        </button>
+        <div class="faq-answer" id="faq-urgencia">
+          <div class="faq-answer-content">
+            Si hay una detención o allanamiento EN CURSO ahora mismo:<br><br>
+            <strong>Llamá inmediatamente:</strong> +54 381 632 1536<br>
+            <strong>O WhatsApp:</strong> <a href="https://wa.me/5493816321536" style="color: var(--azul-noche); font-weight: bold;">+54 9 381 632 1536</a><br><br>
+            No esperes a llenar este formulario. La defensa técnica en las primeras 2 horas es crítica.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" data-faq="cambio">
+          <span>🔄 ¿Puedo cambiar de abogado después?</span>
+          <span class="faq-toggle">▼</span>
+        </button>
+        <div class="faq-answer" id="faq-cambio">
+          <div class="faq-answer-content">
+            Sí. Vos podés cambiar de abogado en cualquier momento. El patrocinio se puede revocar cuando lo desees, aunque es mejor no hacerlo en momentos críticos del proceso. Si no estás conforme con la defensa, hay tiempo para cambiar.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" data-faq="relacion">
+          <span>📝 ¿Cuándo comienza la relación abogado-cliente?</span>
+          <span class="faq-toggle">▼</span>
+        </button>
+        <div class="faq-answer" id="faq-relacion">
+          <div class="faq-answer-content">
+            La relación profesional oficial comienza <strong>cuando ambas partes firman un contrato de patrocinio.</strong> Hasta ese momento, es una consulta evaluativa. El secreto profesional te cubre desde que comenzamos a conversar, pero la defensa oficial requiere documento firmado.
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Ricardo Vernal — Abogado penalista · San Miguel de Tucumán, Argentina</p>
+      <p>+54 381 632 1536 · audienciasvernal@gmail.com</p>
+      <p class="nota-confirmar">Este sitio no reemplaza asesoramiento legal profesional ni constituye publicidad de resultados.</p>
+    </div>
+  </footer>
+
+  <script>
+    window.SITE_CONTENT = [
+      { titulo: 'Urgencias 24/7', texto: 'Atención inmediata ante detenciones y allanamientos', url: 'servicios.html#urgencias' },
+      { titulo: 'Delitos complejos', texto: 'Defensa técnica en causas de alta complejidad probatoria', url: 'servicios.html#complejos' },
+      { titulo: 'Querellas', texto: 'Representación de la parte querellante', url: 'servicios.html#querellas' },
+      { titulo: 'Asesoramiento preventivo', texto: 'Prevención de riesgo penal antes de que exista una causa', url: 'servicios.html#preventivo' },
+      { titulo: 'Excarcelaciones', texto: 'Pedidos de libertad y morigeración de la prisión preventiva', url: 'servicios.html#excarcelaciones' },
+      { titulo: 'Recursos y casación', texto: 'Apelación y casación ante decisiones desfavorables', url: 'servicios.html#recursos' },
+      { titulo: 'Enviar mi consulta', texto: 'Foto, documento, texto o nota de voz - respuesta en 2 horas', url: 'mi-consulta.html' },
+      { titulo: 'Analizar mi caso', texto: 'Describe tu situación y recibe un análisis con teoría del caso penal', url: 'analizar-mi-caso.html' },
+    ];
+  </script>
+  <script src="main.js"></script>
+  <script>
+    let selectedFiles = [];
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let recordingStartTime = null;
+    let timerInterval = null;
+
+    const MAX_FILE_SIZE = 20 * 1024 * 1024;
+    const MAX_RECORDING_TIME = 120000; // 2 minutos
+
+    // CAPTURA DE FOTO - CÁMARA
+    document.getElementById('btn-camera').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('camera-input').click();
+    });
+
+    document.getElementById('camera-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    // SUBIR IMAGEN
+    document.getElementById('btn-upload-image').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('image-input').click();
+    });
+
+    document.getElementById('image-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    // ADJUNTAR PDF
+    document.getElementById('btn-pdf').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('pdf-input').click();
+    });
+
+    document.getElementById('pdf-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) {
+        handleFile(e.target.files[0]);
+      }
+    });
+
+    function handleFile(file) {
+      if (!['image/jpeg', 'image/png', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'].includes(file.type)) {
+        alert('❌ Tipo de archivo no soportado. Usa: JPG, PNG, PDF, DOC, DOCX o TXT');
+        return;
+      }
+
+      if (file.size > MAX_FILE_SIZE) {
+        alert('❌ El archivo es muy grande (máximo 20 MB)');
+        return;
+      }
+
+      if (!selectedFiles.find(f => f.name === file.name)) {
+        selectedFiles.push(file);
+      }
+
+      updateFileList();
+      document.getElementById('camera-input').value = '';
+      document.getElementById('image-input').value = '';
+      document.getElementById('pdf-input').value = '';
+    }
+
+    function updateFileList() {
+      const container = document.getElementById('files-container');
+
+      if (selectedFiles.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+
+      let html = '<div class="file-list"><h3 style="margin-top: 0; color: var(--azul-noche);">Archivos seleccionados</h3>';
+
+      selectedFiles.forEach((file, idx) => {
+        const fileIcon = file.type.startsWith('image') ? '🖼️' : '📄';
+        const fileSizeMB = (file.size / 1024 / 1024).toFixed(1);
+
+        html += `
+          <div class="file-item">
+            <div class="file-item-info">
+              <p class="file-item-name">${fileIcon} ${file.name}</p>
+              <p class="file-item-size">${fileSizeMB} MB</p>
+            </div>
+            <button type="button" class="btn-remove" data-index="${idx}">✕ Quitar</button>
+          </div>
+        `;
+      });
+
+      html += '</div>';
+      container.innerHTML = html;
+
+      document.querySelectorAll('.btn-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const idx = parseInt(btn.dataset.index);
+          selectedFiles.splice(idx, 1);
+          updateFileList();
+        });
+      });
+    }
+
+    // CONTADOR DE CARACTERES
+    const mensaje = document.getElementById('mensaje');
+    const charCounter = document.getElementById('char-counter');
+
+    mensaje.addEventListener('input', () => {
+      const count = mensaje.value.length;
+      charCounter.textContent = `${count} / 500 caracteres`;
+
+      if (count < 10) {
+        charCounter.classList.add('error');
+        charCounter.classList.remove('warning');
+      } else if (count < 80) {
+        charCounter.classList.add('warning');
+        charCounter.classList.remove('error');
+      } else {
+        charCounter.classList.remove('warning', 'error');
+      }
+
+      if (count > 500) {
+        mensaje.value = mensaje.value.substring(0, 500);
+        charCounter.textContent = '500 / 500 caracteres';
+      }
+    });
+
+    // GRABADORA DE VOZ
+    const btnRecord = document.getElementById('btn-record');
+    const btnStopRecord = document.getElementById('btn-stop-record');
+    const btnReRecord = document.getElementById('btn-re-record');
+    const recorderStatus = document.getElementById('recorder-status');
+    const recorderIdle = document.getElementById('recorder-idle');
+    const recorderPlayback = document.getElementById('recorder-playback');
+    const audioPlayback = document.getElementById('audio-playback');
+    const recorderWarning = document.getElementById('recorder-warning');
+    const recorderTimer = document.getElementById('recorder-timer');
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      recorderWarning.style.display = 'block';
+      btnRecord.disabled = true;
+    }
+
+    btnRecord.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+        recordingStartTime = Date.now();
+
+        mediaRecorder.ondataavailable = (event) => {
+          audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstart = () => {
+          recorderIdle.style.display = 'none';
+          recorderStatus.style.display = 'block';
+          recorderPlayback.style.display = 'none';
+
+          timerInterval = setInterval(() => {
+            const elapsed = Date.now() - recordingStartTime;
+            const seconds = Math.floor((elapsed / 1000) % 60);
+            const minutes = Math.floor(elapsed / 60000);
+            recorderTimer.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+            if (elapsed >= MAX_RECORDING_TIME) {
+              mediaRecorder.stop();
+            }
+          }, 100);
+        };
+
+        mediaRecorder.onstop = () => {
+          clearInterval(timerInterval);
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          const audioUrl = URL.createObjectURL(audioBlob);
+
+          audioPlayback.src = audioUrl;
+          recorderIdle.style.display = 'none';
+          recorderStatus.style.display = 'none';
+          recorderPlayback.style.display = 'block';
+
+          stream.getTracks().forEach(track => track.stop());
+
+          // Guardar audio para envío
+          selectedFiles.push(new File([audioBlob], 'nota-voz.webm', { type: 'audio/webm' }));
+        };
+
+        mediaRecorder.start();
+      } catch (err) {
+        alert('❌ No se pudo acceder al micrófono: ' + err.message);
+      }
+    });
+
+    btnStopRecord.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+      }
+    });
+
+    btnReRecord.addEventListener('click', (e) => {
+      e.preventDefault();
+      audioChunks = [];
+      audioPlayback.src = '';
+      recorderIdle.style.display = 'block';
+      recorderPlayback.style.display = 'none';
+
+      selectedFiles = selectedFiles.filter(f => f.name !== 'nota-voz.webm');
+    });
+
+    // ENVÍO DEL FORMULARIO
+    document.getElementById('consulta-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const mensaje_text = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !telefono) {
+        alert('⚠️ Por favor, completa tu nombre y teléfono');
+        return;
+      }
+
+      if (mensaje_text.length < 10) {
+        alert('⚠️ Relatá un poco más sobre tu situación (mínimo 10 caracteres)');
+        return;
+      }
+
+      // Simulación de envío (en producción, enviaría al backend)
+      const formData = new FormData();
+      formData.append('nombre', nombre);
+      formData.append('telefono', telefono);
+      formData.append('mensaje', mensaje_text);
+
+      selectedFiles.forEach(file => {
+        formData.append('archivos', file);
+      });
+
+      // Por ahora, guardar en localStorage y mostrar confirmación
+      const consultaData = {
+        timestamp: new Date().toISOString(),
+        nombre: nombre,
+        telefono: telefono,
+        mensaje: mensaje_text,
+        archivoCount: selectedFiles.length
+      };
+
+      localStorage.setItem('ultima-consulta', JSON.stringify(consultaData));
+
+      // Mostrar confirmación
+      document.getElementById('consulta-form').style.display = 'none';
+      document.getElementById('success-box').classList.add('visible');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // FAQ ACCORDION
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const faqId = btn.dataset.faq;
+        const answer = document.getElementById(`faq-${faqId}`);
+        const toggle = btn.querySelector('.faq-toggle');
+
+        btn.classList.toggle('active');
+        answer.classList.toggle('open');
+        toggle.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
