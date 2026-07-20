@@ -189,42 +189,69 @@
 
     .success-box {
       background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-      border: 2px solid #10b981;
-      border-radius: 12px;
-      padding: 2rem;
+      border: 3px solid #10b981;
+      border-radius: 16px;
+      padding: 3rem 2rem;
       text-align: center;
       margin: 2rem 0;
       display: none;
+      animation: successSlideIn 0.6s ease;
+    }
+
+    @keyframes successSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .success-box.visible {
       display: block;
     }
 
-    .success-box h2 {
-      color: #047857;
-      margin: 0 0 1rem 0;
-      font-size: 1.5rem;
+    .success-emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: successBounce 0.8s ease;
     }
 
-    .success-box p {
+    @keyframes successBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .success-box h2 {
+      color: #047857;
+      margin: 0 0 0.5rem 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .success-box > p {
       color: #059669;
-      margin: 0 0 1.5rem 0;
+      margin: 0 0 2rem 0;
       font-size: 1.1rem;
+      line-height: 1.6;
     }
 
     .success-steps {
       display: grid;
       gap: 1rem;
+      margin-bottom: 2rem;
     }
 
     .success-step {
       background: white;
-      padding: 1rem;
-      border-radius: 8px;
+      padding: 1.25rem;
+      border-radius: 10px;
       color: var(--azul-noche);
       font-weight: 600;
       border-left: 4px solid #10b981;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
     }
 
     .faq-section {
@@ -370,10 +397,10 @@
         </div>
       </div>
 
-      <!-- SECCIÓN 4: NOTA DE VOZ -->
+      <!-- SECCIÓN 3B: NOTA DE VOZ (OPCIONAL) -->
       <div style="margin-bottom: 2rem;">
-        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-bottom: 1rem;">4. Nota de voz (opcional)</h2>
-        <p style="font-size: 0.9rem; color: var(--gris); margin-bottom: 1rem;">Preferís hablar en lugar de escribir? Graba una nota de voz.</p>
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-bottom: 1rem;">3B. Nota de voz <span style="font-size: 0.9rem; color: var(--gris);">(opcional)</span></h2>
+        <p style="font-size: 0.9rem; color: var(--gris); margin-bottom: 1rem;">¿Preferís hablar en lugar de escribir? Graba una nota de voz (máximo 2 minutos).</p>
 
         <div class="recorder-box">
           <div id="recorder-status" style="display: none;">
@@ -383,7 +410,7 @@
           </div>
 
           <div id="recorder-idle">
-            <p style="margin: 0 0 1rem 0; color: #92400e;">Toca el botón y habla naturalmente. Máximo 2 minutos.</p>
+            <p style="margin: 0 0 1rem 0; color: #92400e;">Toca el botón y habla naturalmente.</p>
             <button type="button" id="btn-record" class="btn-recorder">🎤 Iniciar grabación</button>
             <div id="recorder-warning" style="color: #dc2626; font-size: 0.85rem; margin-top: 0.5rem; display: none;">
               ⚠️ Tu navegador no soporta grabación de audio
@@ -391,25 +418,48 @@
           </div>
 
           <div id="recorder-playback" style="display: none;">
-            <p style="color: #92400e; font-weight: bold; margin: 0 0 1rem 0;">✅ Audio grabado</p>
+            <p style="color: #047857; font-weight: bold; margin: 0 0 1rem 0;">✅ Audio grabado correctamente</p>
             <audio id="audio-playback" controls style="width: 100%; margin-bottom: 1rem;"></audio>
             <button type="button" id="btn-re-record" class="btn-recorder" style="background: #ea580c;">🔄 Grabar de nuevo</button>
           </div>
         </div>
       </div>
 
-      <!-- DATOS DE CONTACTO -->
-      <div style="margin-bottom: 2rem; background: var(--gris-claro); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--azul-noche);">
-        <h3 style="color: var(--azul-noche); margin-top: 0;">Tu información de contacto</h3>
+      <!-- SECCIÓN 4: DATOS DE CONTACTO -->
+      <div style="margin-bottom: 2rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0284c7;">
+        <h2 style="font-size: 1.1rem; font-weight: 600; color: var(--azul-noche); margin-top: 0; margin-bottom: 1rem;">4. Tu información de contacto</h2>
 
         <div class="form-group">
-          <label for="nombre">Nombre y apellido</label>
+          <label for="nombre">Nombre y apellido *</label>
           <input type="text" id="nombre" name="nombre" required>
         </div>
 
         <div class="form-group">
-          <label for="telefono">Teléfono (WhatsApp preferentemente)</label>
+          <label for="telefono">Teléfono (WhatsApp preferentemente) *</label>
           <input type="tel" id="telefono" name="telefono" placeholder="+54 9 381..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email (opcional)</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com">
+        </div>
+
+        <div class="form-group">
+          <label>¿Cómo prefieres que te contactemos? *</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; background: white; padding: 0.75rem; border-radius: 6px; border: 2px solid #e5e7eb;">
+              <input type="radio" name="medio-contacto" value="whatsapp" checked required style="cursor: pointer;">
+              <span style="font-size: 0.9rem; font-weight: 500;">💬 WhatsApp</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; background: white; padding: 0.75rem; border-radius: 6px; border: 2px solid #e5e7eb;">
+              <input type="radio" name="medio-contacto" value="llamada" required style="cursor: pointer;">
+              <span style="font-size: 0.9rem; font-weight: 500;">☎️ Llamada</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; background: white; padding: 0.75rem; border-radius: 6px; border: 2px solid #e5e7eb;">
+              <input type="radio" name="medio-contacto" value="email" required style="cursor: pointer;">
+              <span style="font-size: 0.9rem; font-weight: 500;">✉️ Email</span>
+            </label>
+          </div>
         </div>
       </div>
 
@@ -421,14 +471,19 @@
 
     <!-- CONFIRMACIÓN -->
     <div id="success-box" class="success-box">
-      <h2>✅ ¡Consulta recibida con éxito!</h2>
-      <p>Gracias por tu confianza. Nos pondremos en contacto en las próximas 2 horas.</p>
+      <div class="success-emoji">✅</div>
+      <h2>¡Consulta recibida con éxito!</h2>
+      <p>Gracias por tu confianza.<br>Nos pondremos en contacto en las próximas <strong>2 horas</strong>.</p>
       <div class="success-steps">
         <div class="success-step">📋 Revisaremos tu caso completo</div>
-        <div class="success-step">☎️ Te llamaremos o escribiremos por WhatsApp</div>
+        <div class="success-step">☎️ Te contactaremos por tu medio preferido</div>
         <div class="success-step">⚖️ Iniciará la defensa técnica inmediata</div>
       </div>
-      <a href="index.html" class="btn btn-secondary" style="margin-top: 1.5rem; display: inline-block;">← Volver a inicio</a>
+      <div style="background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid #0284c7;">
+        <p style="margin: 0 0 0.75rem 0; color: var(--azul-noche); font-weight: bold;">💬 Puedes escribir por WhatsApp mientras esperas</p>
+        <p style="margin: 0; color: var(--gris); font-size: 0.9rem;">+54 9 381 632 1536</p>
+      </div>
+      <a href="index.html" class="btn btn-primary" style="display: inline-block; padding: 0.9rem 2rem;">← Volver a inicio</a>
     </div>
 
     <!-- FAQ -->
@@ -538,6 +593,7 @@
     ];
   </script>
   <script src="main.js"></script>
+  <script src="whatsapp-widget.js"></script>
   <script>
     let selectedFiles = [];
     let mediaRecorder = null;
