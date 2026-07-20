@@ -241,7 +241,7 @@
     <div class="wa-widget-menu" id="waMenu">
       <div class="wa-widget-header">
         <div class="wa-widget-avatar">
-          <img src="assets/ricardo-vernal-hero.jpg" alt="Ricardo Vernal" onerror="this.style.display='none'">
+          <img src="assets/secretaria-avatar.svg" alt="Asistente Ricardo Vernal" onerror="this.style.display='none'">
         </div>
         <div class="wa-widget-info">
           <div class="wa-widget-info-name">Ricardo Vernal</div>
