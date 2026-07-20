@@ -216,18 +216,60 @@
 
   <section class="container case-form-container" data-reveal>
     <h2 class="section-title">Describe tu situación</h2>
-    <p class="section-lead">Cuéntame brevemente los hechos. Incluí fechas, lugares, personas involucradas y lo que sucedió. Mínimo 80 caracteres.</p>
+    <p class="section-lead">Elige cómo quieres proporcionar la información: escribe directamente, sube un PDF o una foto.</p>
+
+    <!-- Tabs -->
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 2px solid var(--pizarra); flex-wrap: wrap;">
+      <button class="tab-btn active" data-tab="texto" style="padding: 1rem 1.5rem; background: none; border: none; cursor: pointer; font-weight: 600; border-bottom: 3px solid var(--azul-noche); color: var(--azul-noche);">
+        📝 Escribir Texto
+      </button>
+      <button class="tab-btn" data-tab="pdf" style="padding: 1rem 1.5rem; background: none; border: none; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; color: var(--gris);">
+        📄 Subir PDF
+      </button>
+      <button class="tab-btn" data-tab="foto" style="padding: 1rem 1.5rem; background: none; border: none; cursor: pointer; font-weight: 600; border-bottom: 3px solid transparent; color: var(--gris);">
+        📸 Subir Foto
+      </button>
+    </div>
 
     <form id="case-form">
-      <div class="case-form-group">
-        <label for="facts">Relato de los hechos</label>
-        <textarea
-          id="facts"
-          name="facts"
-          placeholder="Ej: El 15 de marzo en San Miguel, encontraron un paquete en mi domicilio que contenía... No firme nada, pedí un abogado inmediatamente..."
-          required
-        ></textarea>
-        <span class="char-count"><span id="char-count">0</span>/1500 caracteres</span>
+      <!-- TAB 1: TEXTO -->
+      <div id="tab-texto" class="tab-content">
+        <div class="case-form-group">
+          <label for="facts">Relato de los hechos</label>
+          <textarea
+            id="facts"
+            name="facts"
+            placeholder="Ej: El 15 de marzo en San Miguel, encontraron un paquete en mi domicilio que contenía... No firme nada, pedí un abogado inmediatamente..."
+            required
+          ></textarea>
+          <span class="char-count"><span id="char-count">0</span>/1500 caracteres</span>
+        </div>
+      </div>
+
+      <!-- TAB 2: PDF -->
+      <div id="tab-pdf" class="tab-content" style="display: none;">
+        <div class="case-form-group">
+          <label for="pdf-input">Sube tu PDF</label>
+          <div id="pdf-drop-zone" style="border: 2px dashed var(--pizarra); border-radius: 6px; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--gris-claro);">
+            <p style="margin: 0; color: var(--azul-noche); font-weight: 600; font-size: 1.1rem;">📄 Arrastra tu PDF aquí</p>
+            <p style="margin: 0.5rem 0 0 0; color: var(--gris); font-size: 0.9rem;">o haz click para seleccionar</p>
+            <input id="pdf-input" type="file" accept=".pdf" style="display: none;">
+          </div>
+          <div id="pdf-status" style="margin-top: 1rem; display: none; padding: 1rem; background: #d1fae5; border-radius: 4px; color: #065f46;"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: FOTO -->
+      <div id="tab-foto" class="tab-content" style="display: none;">
+        <div class="case-form-group">
+          <label for="foto-input">Sube una foto o imagen</label>
+          <div id="foto-drop-zone" style="border: 2px dashed var(--pizarra); border-radius: 6px; padding: 2.5rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--gris-claro);">
+            <p style="margin: 0; color: var(--azul-noche); font-weight: 600; font-size: 1.1rem;">📸 Arrastra tu foto aquí</p>
+            <p style="margin: 0.5rem 0 0 0; color: var(--gris); font-size: 0.9rem;">JPG, PNG (OCR automático)</p>
+            <input id="foto-input" type="file" accept=".jpg,.jpeg,.png" style="display: none;">
+          </div>
+          <div id="foto-status" style="margin-top: 1rem; display: none; padding: 1rem; background: #d1fae5; border-radius: 4px; color: #065f46;"></div>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem;">
@@ -497,6 +539,167 @@
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
+    }
+
+    // TAB SWITCHING
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabName = btn.getAttribute('data-tab');
+
+        tabBtns.forEach(b => {
+          b.style.borderBottom = '3px solid transparent';
+          b.style.color = 'var(--gris)';
+        });
+        tabContents.forEach(tc => tc.style.display = 'none');
+
+        btn.style.borderBottom = '3px solid var(--azul-noche)';
+        btn.style.color = 'var(--azul-noche)';
+        document.getElementById(`tab-${tabName}`).style.display = 'block';
+      });
+    });
+
+    // PDF HANDLING
+    const pdfDropZone = document.getElementById('pdf-drop-zone');
+    const pdfInput = document.getElementById('pdf-input');
+    const pdfStatus = document.getElementById('pdf-status');
+
+    pdfDropZone.addEventListener('click', () => pdfInput.click());
+    pdfDropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      pdfDropZone.style.borderColor = 'var(--azul-noche)';
+      pdfDropZone.style.background = '#e0f2fe';
+    });
+    pdfDropZone.addEventListener('dragleave', () => {
+      pdfDropZone.style.borderColor = 'var(--pizarra)';
+      pdfDropZone.style.background = 'var(--gris-claro)';
+    });
+    pdfDropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      if (files[0]?.type === 'application/pdf') {
+        pdfInput.files = files;
+        handlePdfFile(files[0]);
+      } else {
+        pdfStatus.style.display = 'block';
+        pdfStatus.textContent = '❌ Solo se aceptan archivos PDF';
+      }
+      pdfDropZone.style.borderColor = 'var(--pizarra)';
+      pdfDropZone.style.background = 'var(--gris-claro)';
+    });
+
+    pdfInput.addEventListener('change', (e) => {
+      if (e.target.files[0]) {
+        handlePdfFile(e.target.files[0]);
+      }
+    });
+
+    function handlePdfFile(file) {
+      pdfStatus.style.display = 'block';
+      pdfStatus.textContent = '⏳ Procesando PDF... Esto puede tomar unos segundos';
+
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        try {
+          // Load PDF.js library
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+          script.onload = async () => {
+            const pdf = await pdfjsLib.getDocument(e.target.result).promise;
+            let fullText = '';
+
+            for (let i = 0; i < pdf.numPages; i++) {
+              const page = await pdf.getPage(i + 1);
+              const textContent = await page.getTextContent();
+              fullText += textContent.items.map(item => item.str).join(' ') + '\n';
+            }
+
+            if (fullText.trim().length < 80) {
+              pdfStatus.textContent = '⚠️ El PDF tiene muy poco texto';
+              return;
+            }
+
+            factsInput.value = fullText.substring(0, 1500);
+            charCountSpan.textContent = factsInput.value.length;
+            pdfStatus.textContent = '✅ PDF procesado. Texto cargado en el campo de análisis.';
+
+            document.querySelector('[data-tab="texto"]').click();
+          };
+          document.head.appendChild(script);
+        } catch (err) {
+          pdfStatus.textContent = '❌ Error procesando PDF: ' + err.message;
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    // FOTO/OCR HANDLING
+    const fotoDropZone = document.getElementById('foto-drop-zone');
+    const fotoInput = document.getElementById('foto-input');
+    const fotoStatus = document.getElementById('foto-status');
+
+    fotoDropZone.addEventListener('click', () => fotoInput.click());
+    fotoDropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      fotoDropZone.style.borderColor = 'var(--azul-noche)';
+      fotoDropZone.style.background = '#e0f2fe';
+    });
+    fotoDropZone.addEventListener('dragleave', () => {
+      fotoDropZone.style.borderColor = 'var(--pizarra)';
+      fotoDropZone.style.background = 'var(--gris-claro)';
+    });
+    fotoDropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const files = e.dataTransfer.files;
+      if (files[0]?.type.startsWith('image/')) {
+        fotoInput.files = files;
+        handleFotoFile(files[0]);
+      } else {
+        fotoStatus.style.display = 'block';
+        fotoStatus.textContent = '❌ Solo se aceptan imágenes (JPG, PNG)';
+      }
+      fotoDropZone.style.borderColor = 'var(--pizarra)';
+      fotoDropZone.style.background = 'var(--gris-claro)';
+    });
+
+    fotoInput.addEventListener('change', (e) => {
+      if (e.target.files[0]) {
+        handleFotoFile(e.target.files[0]);
+      }
+    });
+
+    function handleFotoFile(file) {
+      fotoStatus.style.display = 'block';
+      fotoStatus.textContent = '⏳ Leyendo imagen con OCR... (puede tomar 30-60 segundos)';
+
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        try {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+          script.onload = async () => {
+            const result = await Tesseract.recognize(e.target.result, 'es');
+            const text = result.data.text;
+
+            if (text.trim().length < 80) {
+              fotoStatus.textContent = '⚠️ La imagen tiene muy poco texto legible';
+              return;
+            }
+
+            factsInput.value = text.substring(0, 1500);
+            charCountSpan.textContent = factsInput.value.length;
+            fotoStatus.textContent = '✅ Texto extraído de la imagen. Verificá que esté correcto antes de analizar.';
+
+            document.querySelector('[data-tab="texto"]').click();
+          };
+          document.head.appendChild(script);
+        } catch (err) {
+          fotoStatus.textContent = '❌ Error procesando imagen: ' + err.message;
+        }
+      };
+      reader.readAsDataURL(file);
     }
   </script>
   <script src="main.js"></script>
