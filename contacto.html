@@ -97,6 +97,46 @@
     </form>
   </section>
 
+  <section class="container" data-reveal>
+    <h2 class="section-title">Adjuntos del caso</h2>
+    <p class="section-lead">Sube documentos (expediente, sentencia, citación) o fotos que describan tu situación. Opcional pero acelerará nuestro análisis inicial.</p>
+
+    <div style="max-width:560px;">
+      <form id="upload-form">
+        <div class="form-group">
+          <label for="doc-category">Categoría del documento</label>
+          <select id="doc-category" name="doc-category" style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; background: white; cursor: pointer;">
+            <option value="">-- Seleccionar categoría --</option>
+            <option value="expediente">📋 Expediente / Auto de proceso</option>
+            <option value="sentencia">⚖️ Sentencia anterior</option>
+            <option value="citacion">📧 Citación / Notificación</option>
+            <option value="foto">📷 Foto / Evidencia</option>
+            <option value="otro">📎 Otro documento</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-top: 1.5rem;">
+          <label>Arrastra archivos aquí o haz clic para seleccionar</label>
+          <div id="upload-drop-zone" style="border: 2px dashed var(--pizarra); border-radius: 6px; padding: 2rem; text-align: center; background: var(--gris-claro); cursor: pointer; transition: all 0.3s ease;">
+            <p style="color: var(--gris); margin: 0 0 0.5rem 0; font-size: 1.1rem;">📁 Archivos (PDF, JPG, PNG)</p>
+            <p style="color: var(--gris); margin: 0; font-size: 0.9rem;">Máximo 10 MB por archivo</p>
+            <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+          </div>
+          <div id="upload-status" style="display: none; margin-top: 1rem; padding: 0.75rem; border-radius: 4px; background: #fef3c7; border-left: 4px solid #d97706; color: #92400e;"></div>
+        </div>
+
+        <div id="file-list" style="margin-top: 1rem;"></div>
+
+        <div class="form-group" style="margin-top: 1.5rem;">
+          <label for="upload-context">Contexto adicional (opcional)</label>
+          <textarea id="upload-context" name="upload-context" rows="3" placeholder="Ej: Los documentos corresponden a la causa iniciada en..." style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; font-family: inherit;"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-secondary" style="margin-top: 1rem;">💾 Guardar archivos (opcional)</button>
+      </form>
+    </div>
+  </section>
+
   <section class="container" id="quiz" data-reveal>
     <h2 class="section-title">Análisis de urgencia penal</h2>
     <p class="section-lead">Responde 4 preguntas para que Ricardo determine el nivel de urgencia de tu caso y los próximos pasos de defensa técnica. Tus respuestas son confidenciales.</p>
@@ -204,6 +244,150 @@
   <script src="main.js"></script>
   <script src="quiz-urgencia.js"></script>
   <script>
+    // FILE UPLOAD HANDLING
+    const uploadDropZone = document.getElementById('upload-drop-zone');
+    const fileInput = document.getElementById('file-input');
+    const uploadStatus = document.getElementById('upload-status');
+    const fileList = document.getElementById('file-list');
+    let selectedFiles = [];
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
+    uploadDropZone.addEventListener('click', () => fileInput.click());
+
+    uploadDropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadDropZone.style.borderColor = 'var(--azul-noche)';
+      uploadDropZone.style.background = '#e0f2fe';
+    });
+
+    uploadDropZone.addEventListener('dragleave', () => {
+      uploadDropZone.style.borderColor = 'var(--pizarra)';
+      uploadDropZone.style.background = 'var(--gris-claro)';
+    });
+
+    uploadDropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const files = Array.from(e.dataTransfer.files);
+      handleFiles(files);
+      uploadDropZone.style.borderColor = 'var(--pizarra)';
+      uploadDropZone.style.background = 'var(--gris-claro)';
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      handleFiles(files);
+    });
+
+    function handleFiles(files) {
+      files.forEach(file => {
+        // Validar tipo de archivo
+        if (!['application/pdf', 'image/jpeg', 'image/png'].includes(file.type)) {
+          showStatus('❌ Solo se aceptan PDF, JPG y PNG', '#fee2e2', '#dc2626');
+          return;
+        }
+
+        // Validar tamaño
+        if (file.size > MAX_FILE_SIZE) {
+          showStatus(`❌ ${file.name} excede 10 MB`, '#fee2e2', '#dc2626');
+          return;
+        }
+
+        // Agregar archivo a la lista
+        if (!selectedFiles.find(f => f.name === file.name)) {
+          selectedFiles.push(file);
+        }
+      });
+
+      updateFileList();
+      fileInput.value = '';
+    }
+
+    function updateFileList() {
+      fileList.innerHTML = '';
+
+      if (selectedFiles.length === 0) {
+        return;
+      }
+
+      const list = document.createElement('div');
+      list.style.cssText = 'background: #f8fafc; padding: 1rem; border-radius: 6px; border-left: 4px solid #10b981;';
+
+      selectedFiles.forEach((file, idx) => {
+        const item = document.createElement('div');
+        item.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;';
+
+        const fileIcon = file.type === 'application/pdf' ? '📄' : '🖼️';
+        const fileSizeMB = (file.size / 1024 / 1024).toFixed(1);
+
+        item.innerHTML = `
+          <div style="flex: 1;">
+            <p style="margin: 0; font-weight: 500; color: var(--azul-noche);">${fileIcon} ${file.name}</p>
+            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: var(--gris);">${fileSizeMB} MB</p>
+          </div>
+          <button type="button" data-index="${idx}" class="btn-remove-file" style="background: #fee2e2; color: #dc2626; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">✕ Eliminar</button>
+        `;
+
+        list.appendChild(item);
+      });
+
+      fileList.appendChild(list);
+
+      // Agregar event listeners a botones de eliminar
+      document.querySelectorAll('.btn-remove-file').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const idx = parseInt(btn.dataset.index);
+          selectedFiles.splice(idx, 1);
+          updateFileList();
+        });
+      });
+
+      showStatus(`✅ ${selectedFiles.length} archivo(s) seleccionado(s)`, '#dcfce7', '#16a34a');
+    }
+
+    function showStatus(message, bgColor, borderColor) {
+      uploadStatus.style.display = 'block';
+      uploadStatus.textContent = message;
+      uploadStatus.style.background = bgColor;
+      uploadStatus.style.borderLeftColor = borderColor;
+    }
+
+    document.getElementById('upload-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const category = document.getElementById('doc-category').value;
+      if (!category && selectedFiles.length > 0) {
+        showStatus('⚠️ Selecciona una categoría antes de guardar', '#fef3c7', '#d97706');
+        return;
+      }
+
+      if (selectedFiles.length === 0) {
+        showStatus('ℹ️ No hay archivos para guardar', '#dbeafe', '#0284c7');
+        return;
+      }
+
+      // Guardar en localStorage (simulado, en producción iría al backend)
+      const uploadData = {
+        timestamp: new Date().toISOString(),
+        category: category,
+        context: document.getElementById('upload-context').value,
+        fileCount: selectedFiles.length,
+        fileNames: selectedFiles.map(f => f.name)
+      };
+
+      localStorage.setItem('case-uploads', JSON.stringify(uploadData));
+
+      showStatus('✅ Archivos guardados. Serán procesados cuando envíes la consulta.', '#dcfce7', '#16a34a');
+
+      // Limpiar después de 3 segundos
+      setTimeout(() => {
+        selectedFiles = [];
+        document.getElementById('doc-category').value = '';
+        document.getElementById('upload-context').value = '';
+        updateFileList();
+      }, 3000);
+    });
+
     document.getElementById('contact-form').addEventListener('submit', function (e) {
       e.preventDefault();
       document.getElementById('form-confirm').classList.add('visible');
