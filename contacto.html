@@ -52,6 +52,73 @@
     </div>
   </section>
 
+  <section class="container" data-reveal style="margin-top: 3rem; margin-bottom: 3rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+      <!-- Lado izquierdo: Información textual -->
+      <div>
+        <h1 style="font-size: 2.8rem; font-weight: 700; color: var(--azul-noche); margin: 0 0 0.5rem 0; line-height: 1.2;">
+          Ricardo Vernal
+        </h1>
+        <p style="font-size: 1.2rem; color: #0052a3; margin: 0 0 1.5rem 0; font-weight: 600;">
+          Abogado Penalista
+        </p>
+
+        <div style="background: var(--gris-claro); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--azul-noche); margin-bottom: 1.5rem;">
+          <p style="margin: 0 0 0.5rem 0; color: var(--azul-noche); font-weight: 600;">📊 Experiencia</p>
+          <p style="margin: 0; color: var(--gris);">20+ años de litigación exclusiva en derecho penal · Fuero ordinario y federal · Tucumán y NOA</p>
+        </div>
+
+        <div style="background: var(--gris-claro); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #10b981; margin-bottom: 1.5rem;">
+          <p style="margin: 0 0 0.5rem 0; color: var(--azul-noche); font-weight: 600;">📍 Ubicación</p>
+          <p style="margin: 0; color: var(--gris);">San Miguel de Tucumán, Argentina · Atención presencial con cita previa</p>
+        </div>
+
+        <div style="background: var(--gris-claro); padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0284c7;">
+          <p style="margin: 0 0 0.5rem 0; color: var(--azul-noche); font-weight: 600;">⏰ Disponibilidad</p>
+          <p style="margin: 0; color: var(--gris);">Urgencias 24/7 ante detenciones y allanamientos · Consultas coordinadas a la brevedad</p>
+        </div>
+      </div>
+
+      <!-- Lado derecho: Foto y datos de contacto -->
+      <div style="text-align: center;">
+        <div style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 51, 102, 0.15); border: 2px solid #e5e7eb; margin-bottom: 2rem;">
+          <picture>
+            <source media="(max-width: 600px)"
+              srcset="assets/ricardo-vernal-hero-mobile.jpg 1x, assets/ricardo-vernal-hero-mobile@2x.jpg 2x">
+            <source media="(min-width: 601px)"
+              srcset="assets/ricardo-vernal-hero-desktop.jpg 1x, assets/ricardo-vernal-hero-desktop@2x.jpg 2x">
+            <img src="assets/ricardo-vernal-hero-desktop.jpg" alt="Ricardo Vernal - Abogado Penalista" width="350" height="450" style="display: block; width: 100%; height: auto;">
+          </picture>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #003366 0%, #001a4d 100%); color: white; padding: 2rem; border-radius: 12px;">
+          <p style="margin: 0 0 1rem 0; font-size: 0.9rem; opacity: 0.9;">Contactar directamente</p>
+
+          <a href="tel:+543816321536" style="display: block; background: white; color: var(--azul-noche); padding: 0.9rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 0.75rem; transition: all 0.3s ease; border: 2px solid white;">
+            ☎️ Llamar: +54 381 632 1536
+          </a>
+
+          <a href="https://wa.me/5493816321536" style="display: block; background: white; color: var(--azul-noche); padding: 0.9rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 0.75rem; transition: all 0.3s ease; border: 2px solid white;">
+            💬 WhatsApp: +54 9 381 632 1536
+          </a>
+
+          <a href="mailto:audienciasvernal@gmail.com" style="display: block; background: rgba(255,255,255,0.2); color: white; padding: 0.9rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; border: 2px solid white; transition: all 0.3s ease;">
+            ✉️ Email: audienciasvernal@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive mobile -->
+    <style>
+      @media (max-width: 960px) {
+        div[style*="grid-template-columns: 1fr 1fr"] {
+          grid-template-columns: 1fr !important;
+        }
+      }
+    </style>
+  </section>
+
   <section class="container" data-reveal>
     <h2 class="section-title">Oficina</h2>
     <div class="office-grid">
