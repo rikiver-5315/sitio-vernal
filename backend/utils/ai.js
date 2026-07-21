@@ -1,13 +1,13 @@
-// Análisis de casos penales con Google Gemini (plan gratuito).
-// Sin SDK: usa fetch nativo de Node 18+. La API key va en process.env.GEMINI_API_KEY.
-// Si el modelo diera 404, probá 'gemini-2.5-flash' o 'gemini-1.5-flash'.
-const GEMINI_MODEL = 'gemini-2.0-flash';
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+// Análisis de casos penales con Groq (Llama de Meta, plan gratuito).
+// Sin SDK: usa fetch nativo de Node 18+ contra la API compatible con OpenAI de Groq.
+// La API key va en process.env.GROQ_API_KEY (se saca gratis en console.groq.com).
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 export async function analyzeCase(facts) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
-    throw new Error('GEMINI_API_KEY no configurada en el entorno');
+    throw new Error('GROQ_API_KEY no configurada en el entorno');
   }
 
   const prompt = `Eres un abogado penalista argentino especializado en análisis de casos.
@@ -40,32 +40,33 @@ IMPORTANTE:
 
   let response;
   try {
-    response = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
+    response = await fetch(GROQ_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.6,
-          maxOutputTokens: 1500,
-          responseMimeType: 'application/json'
-        }
+        model: GROQ_MODEL,
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.6,
+        max_tokens: 1500,
+        response_format: { type: 'json_object' }
       })
     });
   } catch (err) {
-    console.error('Gemini network error:', err);
+    console.error('Groq network error:', err);
     throw new Error('No se pudo contactar el servicio de IA');
   }
 
   if (!response.ok) {
     const detail = await response.text().catch(() => '');
-    console.error('Gemini API error:', response.status, detail);
-    throw new Error('Failed to analyze case with Gemini API');
+    console.error('Groq API error:', response.status, detail);
+    throw new Error('Failed to analyze case with Groq API');
   }
 
   const payload = await response.json();
-  const responseText =
-    payload?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  const responseText = payload?.choices?.[0]?.message?.content || '';
 
   // Parseo del JSON devuelto por el modelo
   let analysisData;
@@ -73,7 +74,7 @@ IMPORTANTE:
     analysisData = JSON.parse(responseText);
   } catch (e) {
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('No valid JSON in Gemini response');
+    if (!jsonMatch) throw new Error('No valid JSON in Groq response');
     analysisData = JSON.parse(jsonMatch[0]);
   }
 
