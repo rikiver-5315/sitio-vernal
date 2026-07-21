@@ -396,7 +396,7 @@
         }
 
         const data = await response.json();
-        showResult(data.analysis);
+        showResult(data.data);
 
       } catch (error) {
         showError(`Error: ${error.message}. Intente nuevamente o contacte al abogado.`);

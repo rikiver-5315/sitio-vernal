@@ -15,6 +15,7 @@ Proporciona un análisis en formato JSON (SIN markdown, JSON puro) con la siguie
 {
   "delito": "descripción del delito probable",
   "articulos": ["art. XXX", "art. YYY"],
+  "jurisdiccion": "Federal" o "Provincial",
   "pruebas_documentales": ["elemento 1", "elemento 2"],
   "pruebas_testimoniales": ["testimonio 1", "testimonio 2"],
   "pruebas_periciales": ["pericia 1", "pericia 2"],
@@ -27,6 +28,7 @@ Proporciona un análisis en formato JSON (SIN markdown, JSON puro) con la siguie
 
 IMPORTANTE:
 - fortaleza debe ser un número 0-100 (donde 0 es defensa muy débil, 100 es defensa muy fuerte)
+- jurisdiccion debe ser EXACTAMENTE la palabra "Federal" o "Provincial" (sin otra variante)
 - No uses markdown en el JSON
 - Sé preciso y técnico
 - Siempre incluye las tres perspectivas (fiscal, juez, defensa)`;
