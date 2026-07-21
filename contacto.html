@@ -46,7 +46,7 @@
 </head>
 <body>
   <div class="urgencia-banner-mobile" id="urgenciaBanner">
-    🚨š¨ ¿Detención o allanamiento en CURSO? <a href="https://wa.me/5493816321536?text=🚨š¨%20Tengo%20una%20URGENCIA.%20Me%20detuvieron%2Fallanan.%20Necesito%20defensa%20AHORA." style="color: white; font-weight: bold; text-decoration: underline;">TAP AQUÃ â†’ WhatsApp urgente</a>
+    🚨š¨ ¿Detención o allanamiento en CURSO? <a href="https://wa.me/5493816321536?text=🚨š¨%20Tengo%20una%20URGENCIA.%20Me%20detuvieron%2Fallanan.%20Necesito%20defensa%20AHORA." style="color: white; font-weight: bold; text-decoration: underline;">TAP AQU â†’ WhatsApp urgente</a>
   </div>
 
   <header class="site-header">
@@ -65,7 +65,7 @@
         </div>
         <a href="contacto.html" class="btn btn-primary">Consulta urgente</a>
       </nav>
-      <button id="hamburger" class="hamburger" aria-label="Abrir menÃº">☰</button>
+      <button id="hamburger" class="hamburger" aria-label="Abrir menú">☰</button>
     </div>
     <div id="mega-menu" class="mega-menu">
       <div class="container mega-menu-grid">
@@ -202,9 +202,9 @@
     <div style="max-width:560px;">
       <form id="upload-form">
         <div class="form-group">
-          <label for="doc-category">CategorÃ­a del documento</label>
+          <label for="doc-category">Categoría del documento</label>
           <select id="doc-category" name="doc-category" style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; background: white; cursor: pointer;">
-            <option value="">-- Seleccionar categorÃ­a --</option>
+            <option value="">-- Seleccionar categoría --</option>
             <option value="expediente">🚨“‹ Expediente / Auto de proceso</option>
             <option value="sentencia">âš–ï¸ Sentencia anterior</option>
             <option value="citacion">🚨“§ Citación / Notificación</option>
@@ -214,7 +214,7 @@
         </div>
 
         <div class="form-group" style="margin-top: 1.5rem;">
-          <label>Arrastra archivos aquÃ­ o haz clic para seleccionar</label>
+          <label>Arrastra archivos aquí o haz clic para seleccionar</label>
           <div id="upload-drop-zone" style="border: 2px dashed var(--pizarra); border-radius: 6px; padding: 2rem; text-align: center; background: var(--gris-claro); cursor: pointer; transition: all 0.3s ease;">
             <p style="color: var(--gris); margin: 0 0 0.5rem 0; font-size: 1.1rem;">🚨“ Archivos (PDF, JPG, PNG)</p>
             <p style="color: var(--gris); margin: 0; font-size: 0.9rem;">Máximo 10 MB por archivo</p>
@@ -251,15 +251,15 @@
       { titulo: 'Asesoramiento preventivo', texto: 'Prevención de riesgo penal antes de que exista una causa', url: 'servicios.html#preventivo' },
       { titulo: 'Excarcelaciones', texto: 'Pedidos de libertad y morigeración de la prisión preventiva', url: 'servicios.html#excarcelaciones' },
       { titulo: 'Recursos y casación', texto: 'Apelación y casación ante decisiones desfavorables', url: 'servicios.html#recursos' },
-      { titulo: 'Derecho civil â€” teorÃ­a de la prueba', texto: 'Evaluación cualitativa de carga probatoria en procesos civiles', url: 'civil.html' },
-      { titulo: 'Cómo se piensa una defensa (ejemplo ilustrativo)', texto: 'Análisis tripartito ficticio: fiscalÃ­a, juez y defensa frente a un mismo caso', url: 'metodologia.html' },
-      { titulo: 'Analizar mi caso', texto: 'Describe tu situación y recibe un análisis con teorÃ­a del caso penal', url: 'analizar-mi-caso.html' },
-      { titulo: '¿Me pueden detener sin orden judicial?', texto: 'Casos de flagrancia y sus lÃ­mites', url: 'faq.html#deteccion-sin-orden' },
+      { titulo: 'Derecho civil â€” teoría de la prueba', texto: 'Evaluación cualitativa de carga probatoria en procesos civiles', url: 'civil.html' },
+      { titulo: 'Cómo se piensa una defensa (ejemplo ilustrativo)', texto: 'Análisis tripartito ficticio: fiscalía, juez y defensa frente a un mismo caso', url: 'metodologia.html' },
+      { titulo: 'Analizar mi caso', texto: 'Describe tu situación y recibe un análisis con teoría del caso penal', url: 'analizar-mi-caso.html' },
+      { titulo: '¿Me pueden detener sin orden judicial?', texto: 'Casos de flagrancia y sus límites', url: 'faq.html#deteccion-sin-orden' },
       { titulo: '¿Qué es la audiencia de control de detención?', texto: 'Qué pasa en las primeras 24-48 horas', url: 'faq.html#audiencia-control' },
       { titulo: '¿Cómo pido la excarcelación?', texto: 'Requisitos y momento procesal oportuno', url: 'faq.html#excarcelacion' },
       { titulo: '¿Tengo que declarar?', texto: 'El derecho a no autoincriminarse', url: 'faq.html#declarar' },
       { titulo: '¿Qué hago si allanan mi domicilio?', texto: 'Pasos inmediatos y qué controlar del acta', url: 'faq.html#allanamiento' },
-      { titulo: '¿Cuánto dura un proceso penal?', texto: 'Plazos habituales segÃºn el fuero', url: 'faq.html#duracion' },
+      { titulo: '¿Cuánto dura un proceso penal?', texto: 'Plazos habituales según el fuero', url: 'faq.html#duracion' },
     ];
   </script>
   <script src="main.js"></script>
@@ -395,7 +395,7 @@
 
       const category = document.getElementById('doc-category').value;
       if (!category && selectedFiles.length > 0) {
-        showStatus('âš ï¸ Selecciona una categorÃ­a antes de guardar', '#fef3c7', '#d97706');
+        showStatus('âš ï¸ Selecciona una categoría antes de guardar', '#fef3c7', '#d97706');
         return;
       }
 
@@ -404,7 +404,7 @@
         return;
       }
 
-      // Guardar en localStorage (simulado, en producción irÃ­a al backend)
+      // Guardar en localStorage (simulado, en producción iría al backend)
       const uploadData = {
         timestamp: new Date().toISOString(),
         category: category,
@@ -415,7 +415,7 @@
 
       localStorage.setItem('case-uploads', JSON.stringify(uploadData));
 
-      showStatus('âœ… Archivos guardados. Serán procesados cuando envÃ­es la consulta.', '#dcfce7', '#16a34a');
+      showStatus('âœ… Archivos guardados. Serán procesados cuando envíes la consulta.', '#dcfce7', '#16a34a');
 
       // Limpiar después de 3 segundos
       setTimeout(() => {
@@ -463,11 +463,11 @@
             document.getElementById('quiz-defensa').textContent = r.tripartito.defensa;
             document.getElementById('quiz-disclaimer').textContent = r.disclaimer;
 
-            // Agregar acción crÃ­tica basada en nivel de urgencia
+            // Agregar acción crítica basada en nivel de urgencia
             const acciones = {
-              'urgente': 'âš ï¸ TU CASO ES URGENTE. Activa la defensa técnica EN LAS PRÃ“XIMAS 2 HORAS. Los errores en las primeras 48 horas son irreversibles.',
+              'urgente': 'âš ï¸ TU CASO ES URGENTE. Activa la defensa técnica EN LAS PR“XIMAS 2 HORAS. Los errores en las primeras 48 horas son irreversibles.',
               'alto': '🚨”´ NIVEL ALTO DE URGENCIA. Solicita audiencia con defensor hoy mismo. La estrategia debe iniciarse ahora.',
-              'preventiva': '🚨Ÿ  ACCIÃ“N PREVENTIVA RECOMENDADA. Consulta antes de cualquier citación o comunicación con la fiscalÃ­a.'
+              'preventiva': '🚨Ÿ  ACCI“N PREVENTIVA RECOMENDADA. Consulta antes de cualquier citación o comunicación con la fiscalía.'
             };
             document.getElementById('quiz-accion').textContent = acciones[r.nivel] || 'Contacta con un defensor para evaluar tu caso.';
           }
@@ -479,6 +479,7 @@
   </script>
 </body>
 </html>
+
 
 
 
