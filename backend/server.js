@@ -11,7 +11,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://rikiver-5315.github.io/sitio-vernal';
+// El "Origin" que envía el navegador es SOLO protocolo+dominio, sin ruta
+// (ej. "https://rikiver-5315.github.io", nunca "https://rikiver-5315.github.io/sitio-vernal").
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://rikiver-5315.github.io';
 
 // Redis client setup (opcional: solo persiste el límite de "1 análisis por día").
 // Si no hay REDIS_URL, no se intenta conectar — evita reintentos infinitos en los logs.
