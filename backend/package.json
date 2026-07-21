@@ -12,10 +12,12 @@
   "author": "Ricardo Vernal",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
+    "express": "^4.21.2",
     "cors": "^2.8.5",
+    "helmet": "^8.0.0",
+    "express-rate-limit": "^7.4.1",
     "redis": "^4.6.14",
-    "@anthropic-ai/sdk": "^0.20.0",
+    "@anthropic-ai/sdk": "^0.32.1",
     "dotenv": "^16.3.1"
   }
 }

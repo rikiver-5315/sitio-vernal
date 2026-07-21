@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { createClient } from 'redis';
 import dotenv from 'dotenv';
 import { analyzeCase } from './utils/claude.js';
@@ -23,12 +25,29 @@ try {
   redis = null;
 }
 
+// Seguridad y confianza en proxy (Render está detrás de un proxy → req.ip real)
+app.set('trust proxy', 1);
+app.disable('x-powered-by');
+app.use(helmet());
+
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: '16kb' })); // techo de tamaño de body
 app.use(cors({
   origin: FRONTEND_URL,
-  credentials: true
+  methods: ['GET', 'POST'],
+  credentials: false
 }));
+
+// Rate limit por IP (defensa en capas — funciona SIN Redis).
+// Frena el abuso económico del endpoint de IA (VULN-01).
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000,       // 1 minuto
+  max: 5,                    // 5 solicitudes por IP por minuto
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Demasiadas solicitudes. Esperá un minuto e intentá de nuevo.' }
+});
+app.use('/api/', apiLimiter);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -87,10 +106,11 @@ app.post('/api/analyze-case', async (req, res) => {
     });
 
   } catch (error) {
+    // El detalle queda SOLO en los logs de Render, nunca se filtra al cliente
     console.error('Error analyzing case:', error);
     res.status(500).json({
       error: 'Analysis failed',
-      message: error.message || 'No pudimos procesar tu análisis. Intenta de nuevo en unos minutos.'
+      message: 'No pudimos procesar tu análisis. Intenta de nuevo en unos minutos.'
     });
   }
 });
