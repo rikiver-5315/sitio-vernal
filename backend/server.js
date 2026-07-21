@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { createClient } from 'redis';
 import dotenv from 'dotenv';
-import { analyzeCase } from './utils/claude.js';
+import { analyzeCase } from './utils/ai.js';
 import { generateFingerprint } from './utils/fingerprint.js';
 
 dotenv.config();
