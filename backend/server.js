@@ -13,16 +13,22 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const FRONTEND_URL = process.env.FRONTEND_URL || 'https://rikiver-5315.github.io/sitio-vernal';
 
-// Redis client setup
-let redis;
-try {
-  redis = createClient({ url: process.env.REDIS_URL });
-  redis.on('error', (err) => console.log('Redis client error', err));
-  await redis.connect();
-  console.log('✓ Redis connected');
-} catch (err) {
-  console.log('⚠ Redis unavailable, running in offline mode');
-  redis = null;
+// Redis client setup (opcional: solo persiste el límite de "1 análisis por día").
+// Si no hay REDIS_URL, no se intenta conectar — evita reintentos infinitos en los logs.
+let redis = null;
+if (process.env.REDIS_URL) {
+  try {
+    redis = createClient({ url: process.env.REDIS_URL });
+    redis.on('error', (err) => console.error('Redis client error:', err.message));
+    await redis.connect();
+    console.log('✓ Redis connected');
+  } catch (err) {
+    console.log('⚠ Redis unavailable, running in offline mode:', err.message);
+    if (redis) await redis.disconnect().catch(() => {});
+    redis = null;
+  }
+} else {
+  console.log('ℹ REDIS_URL no configurada — límite diario deshabilitado (rate-limit por IP sigue activo)');
 }
 
 // Seguridad y confianza en proxy (Render está detrás de un proxy → req.ip real)
