@@ -1,2 +1,33 @@
+# Build artifacts
 dist/
 build/__pycache__/
+__pycache__/
+*.pyc
+
+# Secretos y entorno — NUNCA commitear
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+*.pem
+*.key
+id_rsa
+*.p12
+secrets.json
+credentials.json
+
+# Dependencias
+node_modules/
+backend/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
