@@ -364,6 +364,8 @@
       else if (length < 150) charCount.classList.add('warn');
     });
 
+    const submitButton = caseForm.querySelector('button[type="submit"]');
+
     caseForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -381,7 +383,7 @@
 
       clearMessages();
       showLoading();
-      caseForm.disabled = true;
+      submitButton.disabled = true;
 
       try {
         const response = await fetch(`${BACKEND_URL}/analyze-case`, {
@@ -390,19 +392,20 @@
           body: JSON.stringify({ facts })
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-          const data = await response.json();
           throw new Error(data.message || 'Error del servidor');
         }
 
-        const data = await response.json();
+        loadingContainer.innerHTML = '';
         showResult(data.data);
 
       } catch (error) {
+        loadingContainer.innerHTML = '';
         showError(`Error: ${error.message}. Intente nuevamente o contacte al abogado.`);
       } finally {
-        clearMessages();
-        caseForm.disabled = false;
+        submitButton.disabled = false;
       }
     });
 
