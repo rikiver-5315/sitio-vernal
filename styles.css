@@ -49,6 +49,9 @@ section { padding-block: 3.5rem; }
 .btn-primary:hover { background: #004488; }
 .btn-secondary { border-color: var(--azul-noche); color: var(--azul-noche); background: transparent; }
 .btn-secondary:hover { background: var(--azul-noche); color: var(--blanco); }
+.btn-urgencia { background: #8B0000; color: var(--blanco); font-weight: 700; font-size: 1.1rem; padding: 1rem 2rem; border: 2px solid #ff0000; animation: pulse-urgencia 2s infinite; }
+.btn-urgencia:hover { background: #ff0000; border-color: #8B0000; transform: scale(1.05); }
+@keyframes pulse-urgencia { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); } 50% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); } }
 .hero .btn-secondary, footer .btn-secondary { border-color: var(--blanco); color: var(--blanco); }
 .hero .btn-secondary:hover, footer .btn-secondary:hover { background: var(--blanco); color: var(--azul-noche); }
 .hero .btn-primary, footer .btn-primary { background: var(--blanco); color: var(--azul-noche); }
@@ -225,6 +228,12 @@ section { padding-block: 3.5rem; }
 footer.site-footer { background: var(--azul-noche); color: rgba(255,255,255,0.7); padding: 2.5rem 0; margin-top: 4rem; font-size: 0.9rem; }
 footer.site-footer p { margin-bottom: 0.4rem; }
 footer.site-footer .nota-confirmar { color: rgba(255,255,255,0.6); border-left-color: var(--pizarra); }
+
+.urgencia-banner-mobile { display: none; position: fixed; top: 0; left: 0; right: 0; background: #8B0000; color: white; padding: 1rem; text-align: center; z-index: 100; font-weight: bold; animation: slideDown 0.5s ease; }
+.urgencia-banner-mobile.visible { display: block; }
+.urgencia-banner-mobile a { color: white; font-weight: bold; text-decoration: underline; }
+@keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+@media (max-width: 600px) { body.show-urgencia-banner { padding-top: 60px; } }
 
 /* Tablet */
 @media (min-width: 600px) {

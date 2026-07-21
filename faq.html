@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="urgencia-banner-mobile" id="urgenciaBanner">
+    🚨 ¿Detención o allanamiento en CURSO? <a href="https://wa.me/5493816321536?text=🚨%20Tengo%20una%20URGENCIA.%20Me%20detuvieron%2Fallanan.%20Necesito%20defensa%20AHORA." style="color: white; font-weight: bold; text-decoration: underline;">TAP AQUÍ → WhatsApp urgente</a>
+  </div>
+
   <header class="site-header">
     <div class="container nav">
       <a href="index.html" class="nav-logo">Ricardo Vernal</a>
@@ -127,6 +131,22 @@
   </script>
   <script src="main.js"></script>
   <script src="whatsapp-widget.js"></script>
+  <script>
+    if (window.innerWidth <= 600) {
+      setTimeout(() => {
+        const banner = document.getElementById('urgenciaBanner');
+        banner.classList.add('visible');
+        document.body.classList.add('show-urgencia-banner');
+      }, 3000);
+      let lastScrollY = 0;
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY + 50) {
+          document.getElementById('urgenciaBanner').classList.remove('visible');
+        }
+        lastScrollY = window.scrollY;
+      });
+    }
+  </script>
   <script>
     document.querySelectorAll('.accordion-trigger').forEach(function (btn) {
       btn.addEventListener('click', function () {
