@@ -460,15 +460,15 @@
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
             <div class="tripartito-column" style="background: #f8fafc; padding: 1.25rem; border-radius: 6px; border-top: 4px solid #d97706;">
               <h4>⚖️ FISCALÍA (MPF)</h4>
-              <p>Busca sostener la acusación con prueba directa. Su estrategia será calificar el hecho con severidad y presentar pruebas de cargo.</p>
+              <p>${escapeHtml(analysis.fiscal)}</p>
             </div>
             <div class="tripartito-column" style="background: #f8fafc; padding: 1.25rem; border-radius: 6px; border-top: 4px solid #059669;">
               <h4>🏛️ JUEZ</h4>
-              <p>Debe ser imparcial. Su rol es verificar que se acaten procedimientos, valorar prueba por sana crítica racional, y aplicar la ley.</p>
+              <p>${escapeHtml(analysis.juez)}</p>
             </div>
             <div class="tripartito-column" style="background: #f8fafc; padding: 1.25rem; border-radius: 6px; border-top: 4px solid #0284c7;">
               <h4>🛡️ DEFENSA</h4>
-              <p>Plantea argumentos que favorecen tu posición. Cuestiona prueba de cargo, propone calificación más benigna, y señala vacíos probatorios.</p>
+              <p>${escapeHtml(analysis.defensa)}</p>
             </div>
           </div>
 
