@@ -86,8 +86,22 @@ IMPORTANTE:
     analysisData = JSON.parse(jsonMatch[0]);
   }
 
+  // Garantía dura de brevedad: el modelo no siempre respeta el límite de
+  // palabras pedido en el prompt, así que se acorta acá si hace falta.
+  for (const field of ['fiscal', 'juez', 'defensa']) {
+    if (typeof analysisData[field] === 'string') {
+      analysisData[field] = truncateWords(analysisData[field], 14);
+    }
+  }
+
   const html = generateAnalysisHTML(analysisData);
   return { html, data: analysisData };
+}
+
+function truncateWords(text, maxWords) {
+  const words = text.trim().split(/\s+/);
+  if (words.length <= maxWords) return text.trim();
+  return words.slice(0, maxWords).join(' ') + '…';
 }
 
 function generateAnalysisHTML(data) {
