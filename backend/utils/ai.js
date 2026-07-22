@@ -26,18 +26,22 @@ Proporciona un análisis en formato JSON (SIN markdown, JSON puro) con la siguie
   "pruebas_periciales": ["pericia 1", "pericia 2"],
   "fortaleza": 45,
   "estrategia": "estrategia defensiva recomendada",
-  "fiscal": "la imputación fiscal en una frase breve y concreta",
-  "juez": "la decisión o postura judicial en una frase breve y concreta",
-  "defensa": "la respuesta defensiva en una frase breve y concreta"
+  "fiscal": "imputación fiscal en formato titular de diario, máximo 12 palabras",
+  "juez": "decisión judicial en formato titular de diario, máximo 12 palabras",
+  "defensa": "argumento defensivo en formato titular de diario, máximo 12 palabras"
 }
 
 IMPORTANTE:
 - fortaleza debe ser un número 0-100 (donde 0 es defensa muy débil, 100 es defensa muy fuerte)
 - jurisdiccion debe ser EXACTAMENTE la palabra "Federal" o "Provincial" (sin otra variante)
-- fiscal, juez y defensa deben ser MUY BREVES: una sola frase corta cada uno (máximo ~20 palabras), directa y aplicada a este caso puntual — no un párrafo ni una explicación general de teoría del caso
-- fiscal = la imputación concreta que haría el fiscal en este caso
-- juez = la decisión o postura que tomaría el juez ante estos hechos
-- defensa = la respuesta o argumento concreto que plantearía la defensa
+- fiscal, juez y defensa: ESTRICTAMENTE máximo 12 palabras cada uno. Escribilos como un TITULAR de diario, no como una oración con subordinadas. Sin "porque", sin explicar el razonamiento, solo el hecho concreto.
+  Ejemplos del largo y estilo esperado (para un caso distinto, solo de referencia):
+  "fiscal": "Imputa hurto simple, pide prisión preventiva por riesgo de fuga"
+  "juez": "Ordena excarcelación bajo caución, rechaza pedido fiscal"
+  "defensa": "Cuestiona cadena de custodia, pide sobreseimiento"
+- fiscal = la imputación concreta que haría el fiscal en este caso, en ese formato de titular
+- juez = la decisión o postura que tomaría el juez ante estos hechos, en ese formato de titular
+- defensa = la respuesta o argumento concreto que plantearía la defensa, en ese formato de titular
 - No uses markdown en el JSON
 - Sé preciso y técnico
 - Siempre incluye las tres perspectivas (fiscal, juez, defensa)`;
