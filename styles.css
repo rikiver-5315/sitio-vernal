@@ -139,8 +139,8 @@ section { padding-block: 3.5rem; }
 }
 .hero-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: center; }
 .hero-content { max-width: 640px; }
-.hero-image { display: none; text-align: center; }
-.hero-image img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
+.hero-image { display: block; text-align: center; }
+.hero-image img { max-width: 260px; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); }
 .hero-tagline { margin-bottom: 1.5rem; }
 .tagline-line { font-family: var(--font-heading); font-size: clamp(1.75rem, 6vw, 2.5rem); font-weight: 700; color: var(--blanco); margin: 0; line-height: var(--lh-tight); }
 .hero h1 { font-size: clamp(1.9rem, 5vw, 3.25rem); color: var(--blanco); margin-bottom: 1.5rem; line-height: var(--lh-tight); }
@@ -268,7 +268,7 @@ footer.site-footer .nota-confirmar { color: rgba(255,255,255,0.6); border-left-c
 @media (min-width: 960px) {
   .hamburger { display: none; }
   .hero-grid { grid-template-columns: 1fr 500px; gap: 3rem; }
-  .hero-image { display: block; }
+  .hero-image img { max-width: 100%; }
   .nav-links {
     display: flex; position: static; background: none; padding: 0; border: none;
     flex-direction: row; align-items: center; width: auto;
