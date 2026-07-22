@@ -178,7 +178,7 @@
 
   <section class="container" data-reveal>
     <h2 class="section-title">Formulario de consulta</h2>
-    <p class="section-lead">Sistema de triaje previo. Tus datos son confidenciales y serán analizados personalmente para coordinar una defensa inmediata.</p>
+    <p class="section-lead">Sistema de triaje previo. Tus datos son confidenciales y serán analizados personalmente para coordinar una defensa inmediata. Podés adjuntar documentos o fotos en el mismo envío.</p>
     <form id="contact-form" style="max-width:560px;">
       <div class="form-group">
         <label for="nombre">Nombre y apellido</label>
@@ -192,51 +192,46 @@
         <label for="mensaje">Describi brevemente tu situación</label>
         <textarea id="mensaje" name="mensaje" rows="4" placeholder="Ej: Fui detenido el... o me llamaron para una citación..." required></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">✉️ Enviar Consulta Urgente</button>
+
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label for="doc-category">Categoría del documento adjunto (opcional)</label>
+        <select id="doc-category" name="doc-category" style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; background: white; cursor: pointer;">
+          <option value="">-- Seleccionar categoría --</option>
+          <option value="expediente">📋 Expediente / Auto de proceso</option>
+          <option value="sentencia">⚖️ Sentencia anterior</option>
+          <option value="citacion">📧 Citación / Notificación</option>
+          <option value="foto">📷 Foto / Evidencia</option>
+          <option value="otro">📎 Otro documento</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label>Adjuntar archivos (opcional)</label>
+        <div id="upload-drop-zone" style="border: 2px dashed var(--pizarra); border-radius: 6px; padding: 2rem; text-align: center; background: var(--gris-claro); cursor: pointer; transition: all 0.3s ease;">
+          <p style="color: var(--gris); margin: 0 0 0.5rem 0; font-size: 1.1rem;">📁 Archivos (PDF, JPG, PNG)</p>
+          <p style="color: var(--gris); margin: 0; font-size: 0.9rem;">Máximo 10 MB por archivo</p>
+          <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
+        </div>
+        <div id="upload-status" style="display: none; margin-top: 1rem; padding: 0.75rem; border-radius: 4px; background: #fef3c7; border-left: 4px solid #d97706; color: #92400e;"></div>
+      </div>
+
+      <div id="file-list" style="margin-top: 1rem;"></div>
+
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label for="upload-context">Contexto adicional sobre los archivos (opcional)</label>
+        <textarea id="upload-context" name="upload-context" rows="3" placeholder="Ej: Los documentos corresponden a la causa iniciada en..." style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; font-family: inherit;"></textarea>
+      </div>
+
+      <input type="hidden" name="_subject" value="Nueva Consulta Urgente - Sitio Vernal">
+      <input type="hidden" name="_template" value="table">
+
+      <div id="form-error" style="display:none; margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 4px; background: #fee2e2; border-left: 4px solid #dc2626; color: #991b1b; font-size: 0.9rem;"></div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 1.5rem;">✉️ Enviar Consulta Urgente</button>
       <div id="form-confirm" class="form-confirm">
         <strong> Consulta registrada.</strong> Hemos recibido tu urgencia. Ricardo Vernal analizará tu caso personalmente en las próximas 2 horas y se contactará por WhatsApp o teléfono. La información compartida es confidencial. No genera relación abogado-cliente hasta firma de contrato de patrocinio.
       </div>
     </form>
-  </section>
-
-  <section class="container" data-reveal>
-    <h2 class="section-title">Adjuntos del caso</h2>
-    <p class="section-lead">Sube documentos (expediente, sentencia, citación) o fotos que describan tu situación. Opcional pero acelerará nuestro análisis inicial.</p>
-
-    <div style="max-width:560px;">
-      <form id="upload-form">
-        <div class="form-group">
-          <label for="doc-category">Categoría del documento</label>
-          <select id="doc-category" name="doc-category" style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; background: white; cursor: pointer;">
-            <option value="">-- Seleccionar categoría --</option>
-            <option value="expediente">📋 Expediente / Auto de proceso</option>
-            <option value="sentencia">⚖️ Sentencia anterior</option>
-            <option value="citacion">📧 Citación / Notificación</option>
-            <option value="foto">📷 Foto / Evidencia</option>
-            <option value="otro">📎 Otro documento</option>
-          </select>
-        </div>
-
-        <div class="form-group" style="margin-top: 1.5rem;">
-          <label>Arrastra archivos aquí o haz clic para seleccionar</label>
-          <div id="upload-drop-zone" style="border: 2px dashed var(--pizarra); border-radius: 6px; padding: 2rem; text-align: center; background: var(--gris-claro); cursor: pointer; transition: all 0.3s ease;">
-            <p style="color: var(--gris); margin: 0 0 0.5rem 0; font-size: 1.1rem;">📁 Archivos (PDF, JPG, PNG)</p>
-            <p style="color: var(--gris); margin: 0; font-size: 0.9rem;">Máximo 10 MB por archivo</p>
-            <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png" style="display: none;">
-          </div>
-          <div id="upload-status" style="display: none; margin-top: 1rem; padding: 0.75rem; border-radius: 4px; background: #fef3c7; border-left: 4px solid #d97706; color: #92400e;"></div>
-        </div>
-
-        <div id="file-list" style="margin-top: 1rem;"></div>
-
-        <div class="form-group" style="margin-top: 1.5rem;">
-          <label for="upload-context">Contexto adicional (opcional)</label>
-          <textarea id="upload-context" name="upload-context" rows="3" placeholder="Ej: Los documentos corresponden a la causa iniciada en..." style="width: 100%; padding: 0.75rem; border: 1px solid var(--pizarra); border-radius: 4px; font-family: inherit;"></textarea>
-        </div>
-
-        <button type="submit" class="btn btn-secondary" style="margin-top: 1rem;">💾 Guardar archivos (opcional)</button>
-      </form>
-    </div>
   </section>
 
 <footer class="site-footer">
@@ -394,45 +389,38 @@
       uploadStatus.style.borderLeftColor = borderColor;
     }
 
-    document.getElementById('upload-form').addEventListener('submit', (e) => {
+    // ENVÍO REAL DEL FORMULARIO (datos + archivos en un solo email vía FormSubmit.co)
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
       e.preventDefault();
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const errorBox = document.getElementById('form-error');
+      errorBox.style.display = 'none';
 
-      const category = document.getElementById('doc-category').value;
-      if (!category && selectedFiles.length > 0) {
-        showStatus('⚠️ Selecciona una categoría antes de guardar', '#fef3c7', '#d97706');
-        return;
+      const formData = new FormData(form);
+      selectedFiles.forEach(file => formData.append('archivos', file));
+
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/audienciasvernal@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+
+        if (!response.ok) throw new Error('Error del servidor');
+
+        form.style.display = 'none';
+        document.getElementById('form-confirm').classList.add('visible');
+      } catch (error) {
+        errorBox.textContent = '❌ No pudimos enviar tu consulta. Por favor, llamá o escribí directamente por WhatsApp al +54 9 381 632 1536.';
+        errorBox.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
       }
-
-      if (selectedFiles.length === 0) {
-        showStatus('ℹ️ No hay archivos para guardar', '#dbeafe', '#0284c7');
-        return;
-      }
-
-      // Guardar en localStorage (simulado, en producción iría al backend)
-      const uploadData = {
-        timestamp: new Date().toISOString(),
-        category: category,
-        context: document.getElementById('upload-context').value,
-        fileCount: selectedFiles.length,
-        fileNames: selectedFiles.map(f => f.name)
-      };
-
-      localStorage.setItem('case-uploads', JSON.stringify(uploadData));
-
-      showStatus(' Archivos guardados. Serán procesados cuando envíes la consulta.', '#dcfce7', '#16a34a');
-
-      // Limpiar después de 3 segundos
-      setTimeout(() => {
-        selectedFiles = [];
-        document.getElementById('doc-category').value = '';
-        document.getElementById('upload-context').value = '';
-        updateFileList();
-      }, 3000);
-    });
-
-    document.getElementById('contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      document.getElementById('form-confirm').classList.add('visible');
     });
 
     (function () {
