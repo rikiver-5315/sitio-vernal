@@ -118,6 +118,12 @@
       color: white;
     }
 
+    .wa-widget-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .wa-widget-avatar {
       width: 48px;
       height: 48px;
@@ -239,7 +245,9 @@
   container.innerHTML = `
     <div class="wa-widget-menu" id="waMenu">
       <div class="wa-widget-header">
-        <div class="wa-widget-avatar" aria-hidden="true">⚖</div>
+        <div class="wa-widget-avatar">
+          <img src="assets/ricardo-vernal-hero-mobile.avif" alt="Ricardo Vernal" width="48" height="48" onerror="this.onerror=null;this.src='assets/ricardo-vernal-hero-mobile.jpg';">
+        </div>
         <div class="wa-widget-info">
           <div class="wa-widget-info-name">Ricardo Vernal</div>
           <div class="wa-widget-info-status">${status.message}</div>
