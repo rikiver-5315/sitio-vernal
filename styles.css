@@ -197,6 +197,18 @@ section { padding-block: 3.5rem; }
 .timeline-item h4 { font-size: 1rem; margin-bottom: 0.25rem; }
 .timeline-item p { color: var(--gris); font-size: 0.9rem; }
 
+/* Badges de instituciones (perfil.html - Capacitación) */
+.badges-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+.badge-institucion {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid var(--pizarra); background: var(--gris-claro);
+  color: var(--azul-noche); padding: 0.6rem 1.1rem; font-size: 0.85rem;
+  font-weight: 600; letter-spacing: 0.01em; border-radius: 4px;
+  transition: border-color var(--transition), background var(--transition);
+}
+.badge-institucion:hover { border-color: var(--azul-noche); background: var(--blanco); }
+.badge-institucion::before { content: "🎓"; font-size: 0.9rem; }
+
 /* Accordion (FAQ) */
 .accordion-item { border-top: 1px solid var(--pizarra); }
 .accordion-trigger {
