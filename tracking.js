@@ -1,12 +1,5 @@
-// Google Analytics 4 - Configuración y eventos de conversión
-// Inicialización en cada HTML via etiqueta <script>
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX'); // Reemplazar con GA4 ID real
-
-// Eventos de conversión
+// Eventos de conversión de Google Analytics 4
+// GA4 ya se inicializa en el <head> de cada página; acá solo se registran eventos.
 
 // 1. Click en "Consulta Urgente 24/7" (botón rojo hero)
 document.addEventListener('DOMContentLoaded', () => {
@@ -124,40 +117,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-});
-
-// Google Remarketing Pixel
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('config', 'AW-XXXXXXXXXX'); // Reemplazar con Google Ads Conversion ID
-
-// Meta Pixel
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', 'XXXXXXXXXX'); // Reemplazar con Meta Pixel ID
-fbq('track', 'PageView');
-
-// Meta Pixel - Conversiones personalizadas
-document.addEventListener('DOMContentLoaded', () => {
-  // Track consulta urgente
-  const urgentBtn = document.querySelector('a[href*="wa.me"][class*="btn-urgencia"]');
-  if (urgentBtn) {
-    urgentBtn.addEventListener('click', () => {
-      fbq('track', 'Contact', { value: 1, currency: 'ARS' });
-    });
-  }
-
-  // Track formulario
-  const consultaForm = document.getElementById('consulta-form');
-  if (consultaForm) {
-    consultaForm.addEventListener('submit', () => {
-      fbq('track', 'Lead', { value: 1, currency: 'ARS' });
-    });
-  }
 });
