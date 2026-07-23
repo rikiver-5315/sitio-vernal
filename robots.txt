@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rikiver-5315.github.io/sitio-vernal/sitemap.xml
+Sitemap: https://ricardovernal.com/sitemap.xml
